@@ -1,0 +1,1214 @@
+=== parity_test.js ===
+sp=300 crit=0.05: 423.3 390.0 382.7 384.5 383.0 356.1 311.0
+sp=300 crit=0.1: 438.4 409.2 397.6 405.0 397.9 370.6 331.2
+sp=300 crit=0.2: 468.7 452.1 427.3 446.5 427.5 399.7 373.9
+sp=500 crit=0.05: 515.7 477.9 467.8 469.7 466.5 435.1 394.1
+sp=500 crit=0.1: 534.2 503.4 486.1 495.5 484.7 452.8 421.4
+sp=500 crit=0.2: 571.4 555.2 524.9 547.0 521.1 488.9 473.6
+sp=800 crit=0.05: 654.3 609.7 600.5 602.9 591.7 554.7 521.7
+sp=800 crit=0.1: 677.9 643.5 625.5 634.0 615.0 578.7 555.4
+sp=800 crit=0.2: 725.3 712.3 675.8 698.4 661.4 627.4 623.0
+
+All 63 checks passed (tolerance 0.001).
+
+=== builder_test.js ===
+All 24 builder check groups passed (1020 random round trips, 200 full-build orders).
+
+=== leveling_parity_test.js ===
+All 771 leveling cases match the Python model (largest difference 0).
+
+=== raid_options_test.js ===
+rank: 73 cases checked against the Python
+options: 31 checked, 31 moved by the cases
+
+All 2425 option checks passed (tolerance 0.001).
+
+=== weights_test.js ===
+All 569 weight checks passed (tolerance 0.001).
+
+=== aoe_test.py ===
+test_more_mobs_event: ok
+test_more_mobs_pull: ok
+test_slow_hits_channel: ok
+test_slow_hits_pull: ok
+test_nova_hold_pull: ok
+test_failed_never_scored: ok
+skip: register not found at /home/aurel/wow/forever-mage-lab/tests/../../forever-warlock-lab-drafts/mage-research/gap/aoe_assumptions.json
+test_register: ok
+test_applied_slow: ok
+test_whole_mob_frostbolt: ok
+test_potion_floor: ok
+test_gather_by_start: ok
+  calibration L20: engine 28.9 vs evaluate 28.16 (+2.6%)
+  calibration L25: engine 31.67 vs evaluate 29.40 (+7.7%)
+  calibration L30: engine 29.83 vs evaluate 28.38 (+5.1%)
+  calibration L40: engine 26.67 vs evaluate 25.20 (+5.8%)
+  calibration L50: engine 21.79 vs evaluate 20.49 (+6.4%)
+  calibration L60: engine 21.67 vs evaluate 19.80 (+9.4%)
+test_calibration: ok
+note: under a target cap, one more mob cost a scripted pull at most 0.0% of its damage (not a failure: the cap spreads Nova and the chill thinner)
+note: the scored model got worse with a stronger slow in 1 of 24 steps (not a failure)
+note: the scored Blizzard loop got worse as Nova broke less often in 2 of 24 steps; a Nova that never breaks made 1 of 4 default pulls survive (not a failure)
+423 checks, 0 failures
+
+=== page_check.py ===
+Traceback (most recent call last):
+  File "/home/aurel/wow/forever-mage-lab/tests/page_check.py", line 43, in <module>
+    from playwright.sync_api import sync_playwright
+ModuleNotFoundError: No module named 'playwright'
+
+=== leveling_search_check.py ===
+212 cases; largest gap 0.000% (10 planner gear 1 none {}: Frostbolt +wand finish 23.739 vs Frostbolt +wand finish 23.739)
+cases where evaluate is feasible and the exhaustive best is not, or the reverse: 0
+cases over 0.1%: 0
+
+=== raid_specs.py ===
+
+### Ranking at the defaults (trainer ranks)
+
+| # | Spec | dps | gap to #1 | plan (seconds) | damage by source (dps) |
+|---|---|---|---|---|---|
+| 1 | Frost with Barrage 18/3/30 | 534.2 | best | Frostbolt (opening) 72; Frostbolt 228 | Frostbolt 298, Ice Lance (Fingers) 143, Arcane Missiles (Barrage) 94 |
+| 2 | Fire with Arcane Blast 19/31/1 | 503.4 | 5.8% | Fireball (opening) 48; Fireball 73; Arcane Blast x1 + Fireball 95; Fire Blast 50; Evocation 8 | Fireball 135, Fire Blast 89, Arcane Missiles (Barrage) 75, Fireball (stacks) 61, Arcane Blast 36, Ignite 34, Pyroblast (Heating Up) 28, Scorch (Fire Vulnerability) 27, Combustion 17 |
+| 3 | Arcane with Ignite 31/19/1 | 495.5 | 7.3% | Arcane Blast x2 + Fireball (opening) 43; Arcane Blast x1 + Fireball 174; Fire Blast 47; Presence of Mind: Pyroblast 3; Evocation 7 | Fireball (stacks) 128, Arcane Blast 108, Arcane Missiles (Barrage) 104, Fire Blast 81, Scorch (Fire Vulnerability) 26, Ignite 23, Pyroblast (Heating Up) 16, Pyroblast 11 |
+| 4 | Arcane 31/3/17 | 486.1 | 9.0% | Arcane Blast x1 + Frostbolt 283; Fire Blast 13; Presence of Mind: Fireball 4 | Frostbolt (stacks) 166, Arcane Missiles (Barrage) 151, Arcane Blast 142, Fire Blast 21, Fireball 7 |
+| 5 | Frost 14/0/35 (sim build) | 484.7 | 9.3% | Frostbolt (opening) 36; Frostbolt 249; Evocation 8; Wand, full regen 7 | Frostbolt 330, Ice Lance (Fingers) 153, Wand 1 |
+| 6 | Arcane 35/0/16 (sim build) | 452.8 | 15.2% | Arcane Blast x3 + Frostbolt (opening) 30; Arcane Blast x1 + Frostbolt 84; Arcane Blast x2 + Frostbolt 140; Fire Blast 42; Presence of Mind: Fireball 4 | Arcane Blast 145, Arcane Missiles (Barrage) 120, Frostbolt (stacks) 114, Fire Blast 67, Fireball 7 |
+| 7 | Fire 0/35/16 (sim build) | 421.4 | 21.1% | Frostfire Bolt (opening) 24; Scorch 215; Evocation 8; Wand, full regen 27 | Scorch 234, Pyroblast (Heating Up) 71, Ignite 41, Frostfire Bolt 32, Scorch (Fire Vulnerability) 27, Combustion 13, Wand 5 |
+
+### Ranking with the top-rank tomes (topRanks on)
+
+| # | Spec | dps | gap to #1 | plan (seconds) | damage by source (dps) |
+|---|---|---|---|---|---|
+| 1 | Frost with Barrage 18/3/30 | 573.5 | best | Frostbolt (opening) 59; Frostbolt 241 | Frostbolt 327, Ice Lance (Fingers) 143, Arcane Missiles (Barrage) 104 |
+| 2 | Arcane 31/3/17 | 520.6 | 9.2% | Arcane Blast x1 + Frostbolt 296; Presence of Mind: Frostbolt 4 | Frostbolt (stacks) 190, Arcane Missiles (Barrage) 175, Arcane Blast 148, Frostbolt 7 |
+| 3 | Fire with Arcane Blast 19/31/1 | 517.8 | 9.7% | Fireball (opening) 45; Fireball 62; Arcane Blast x1 + Fireball 110; Fire Blast 50; Evocation 8 | Fireball 123, Fire Blast 89, Arcane Missiles (Barrage) 86, Fireball (stacks) 73, Arcane Blast 42, Ignite 34, Pyroblast (Heating Up) 27, Scorch (Fire Vulnerability) 27, Combustion 17 |
+| 4 | Arcane with Ignite 31/19/1 | 511.5 | 10.8% | Arcane Blast x2 + Fireball (opening) 42; Arcane Blast x1 + Fireball 213; Fire Blast 16; Presence of Mind: Pyroblast 3 | Fireball (stacks) 157, Arcane Missiles (Barrage) 136, Arcane Blast 126, Fire Blast 28, Scorch (Fire Vulnerability) 26, Ignite 19, Pyroblast 11, Pyroblast (Heating Up) 10 |
+| 5 | Frost 14/0/35 (sim build) | 486.9 | 15.1% | Frostbolt (opening) 31; Frostbolt 235; Evocation 8; Wand, full regen 26 | Frostbolt 339, Ice Lance (Fingers) 143, Wand 4 |
+| 6 | Arcane 35/0/16 (sim build) | 479.0 | 16.5% | Arcane Blast x1 + Frostbolt 271; Fire Blast 25; Presence of Mind: Frostbolt 4 | Frostbolt (stacks) 163, Arcane Missiles (Barrage) 148, Arcane Blast 119, Fire Blast 40, Frostbolt 8 |
+| 7 | Fire 0/35/16 (sim build) | 419.2 | 26.9% | Fireball (opening) 22; Scorch 216; Evocation 8; Wand, full regen 29 | Scorch 235, Pyroblast (Heating Up) 70, Ignite 40, Fireball 30, Scorch (Fire Vulnerability) 27, Combustion 12, Wand 5 |
+
+### Sensitivity: every untested option, one at a time (dps)
+
+| option | Frost MB | Fire AB | Arcane | Arc/Ignite | Frost sim | Arcane sim | Fire sim | leader, margin over #2 |
+|---|---|---|---|---|---|---|---|---|
+| defaults | 534 | 503 | 486 | 496 | 485 | 453 | 421 | Frost MB +6.1% |
+| topRanks = True (test m6) | 573 | 518 | 521 | 511 | 487 | 479 | 419 | Frost MB +10.1% |
+| downrank = full (test m13) | 534 | 503 | 486 | 496 | 492 | 453 | 459 | Frost MB +6.1% |
+| iceLanceCoef = 0 (test m4) | 488 | 503 | 486 | 496 | 435 | 453 | 421 | Fire AB +1.6% |
+| iceLanceCoef = 0.429 (test m4) | 627 | 503 | 486 | 496 | 584 | 453 | 421 | Frost MB +7.3% |
+| iceLanceCoef = 0.572 (test m4) | 674 | 503 | 486 | 496 | 634 | 453 | 421 | Frost MB +6.2% |
+| abMask = tooltip (test m8) | 534 | 507 | 511 | 520 | 485 | 489 | 421 | Frost MB +2.8% |
+| amSpends = True (test m28) | 534 | 504 | 493 | 504 | 485 | 463 | 421 | Frost MB +6.0% |
+| regenStack = max (tests m5, m14) | 534 | 486 | 486 | 484 | 485 | 451 | 421 | Frost MB +9.8% |
+| regenStack = full (tests m5, m14) | 534 | 503 | 486 | 496 | 505 | 453 | 463 | Frost MB +5.9% |
+| evocation = 0.5 (test m7) | 534 | 495 | 486 | 494 | 455 | 453 | 398 | Frost MB +7.9% |
+| evocation = 0 (test m7) | 534 | 494 | 486 | 494 | 432 | 453 | 380 | Frost MB +8.1% |
+| igniteMunch = 0.15 (test m11) | 534 | 496 | 486 | 492 | 485 | 453 | 415 | Frost MB +7.7% |
+| igniteMunch = 0.3 (test m11) | 534 | 490 | 486 | 488 | 485 | 453 | 408 | Frost MB +9.0% |
+| mbRate = 0.5 (test m18) | 526 | 486 | 462 | 475 | 485 | 428 | 421 | Frost MB +8.1% |
+| levelResist = False (no test yet) | 540 | 536 | 508 | 527 | 485 | 474 | 448 | Frost MB +0.9% |
+| iceLanceBinary = False (test m29) | 526 | 503 | 486 | 496 | 476 | 453 | 421 | Frost MB +4.4% |
+| fingersOnBoss = False (test m30) | 450 | 503 | 486 | 496 | 392 | 453 | 421 | Fire AB +1.6% |
+
+### Sensitivity: the main settings, one at a time (dps)
+
+| option | Frost MB | Fire AB | Arcane | Arc/Ignite | Frost sim | Arcane sim | Fire sim | leader, margin over #2 |
+|---|---|---|---|---|---|---|---|---|
+| defaults | 534 | 503 | 486 | 496 | 485 | 453 | 421 | Frost MB +6.1% |
+| mp5 = 30 | 534 | 509 | 486 | 500 | 498 | 453 | 441 | Frost MB +4.9% |
+| mp5 = 60 | 534 | 515 | 487 | 503 | 502 | 454 | 458 | Frost MB +3.8% |
+| mp5 = 120 | 534 | 522 | 487 | 507 | 510 | 454 | 480 | Frost MB +2.4% |
+| fightLength = 60 | 531 | 543 | 511 | 527 | 506 | 478 | 565 | Fire sim +4.0% |
+| fightLength = 90 | 532 | 533 | 498 | 514 | 508 | 465 | 546 | Fire sim +2.4% |
+| fightLength = 120 | 533 | 527 | 491 | 508 | 508 | 458 | 517 | Frost MB +1.0% |
+| fightLength = 150 | 533 | 520 | 487 | 505 | 507 | 454 | 488 | Frost MB +2.5% |
+| fightLength = 180 | 534 | 512 | 484 | 501 | 506 | 451 | 485 | Frost MB +4.3% |
+| fightLength = 240 | 534 | 517 | 490 | 505 | 498 | 457 | 435 | Frost MB +3.4% |
+| fightLength = 450 | 535 | 497 | 486 | 492 | 444 | 452 | 373 | Frost MB +7.6% |
+| fightLength = 600 | 535 | 496 | 486 | 490 | 439 | 452 | 370 | Frost MB +7.8% |
+| potion = blast | 540 | 496 | 493 | 492 | 432 | 457 | 365 | Frost MB +8.8% |
+| potion = none | 533 | 490 | 486 | 485 | 427 | 451 | 360 | Frost MB +8.8% |
+| runes = False | 534 | 502 | 486 | 494 | 478 | 453 | 409 | Frost MB +6.5% |
+| gems = False | 534 | 503 | 486 | 496 | 485 | 453 | 421 | Frost MB +6.1% |
+| mageblood = False | 534 | 501 | 486 | 494 | 476 | 453 | 413 | Frost MB +6.6% |
+| raidBuffs = noTotem | 534 | 499 | 486 | 492 | 467 | 452 | 404 | Frost MB +7.1% |
+| raidBuffs = none | 515 | 462 | 482 | 467 | 390 | 446 | 333 | Frost MB +6.8% |
+| kings = False | 532 | 495 | 484 | 487 | 468 | 450 | 406 | Frost MB +7.5% |
+| moonkin = True | 545 | 519 | 498 | 511 | 496 | 464 | 437 | Frost MB +5.1% |
+| gearHit = 0.13 | 534 | 512 | 486 | 502 | 485 | 453 | 421 | Frost MB +4.3% |
+| gearHit = 0.15 | 534 | 521 | 486 | 509 | 485 | 453 | 422 | Frost MB +2.5% |
+| gearHit = 0.16 | 534 | 521 | 486 | 509 | 485 | 453 | 422 | Frost MB +2.5% |
+| wandDps = 0 | 534 | 503 | 486 | 496 | 483 | 453 | 417 | Frost MB +6.1% |
+| wandDps = 90 | 534 | 503 | 486 | 496 | 485 | 453 | 424 | Frost MB +6.1% |
+| sp = 300 | 438 | 409 | 398 | 405 | 398 | 371 | 331 | Frost MB +7.2% |
+| sp = 700 | 630 | 597 | 579 | 587 | 572 | 536 | 511 | Frost MB +5.6% |
+| sp = 900 | 726 | 690 | 672 | 681 | 658 | 622 | 600 | Frost MB +5.2% |
+| crit = 0.05 | 516 | 478 | 468 | 470 | 467 | 435 | 394 | Frost MB +7.9% |
+| crit = 0.15 | 553 | 529 | 505 | 521 | 503 | 471 | 447 | Frost MB +4.5% |
+| crit = 0.2 | 571 | 555 | 525 | 547 | 521 | 489 | 474 | Frost MB +2.9% |
+| int = 200 | 534 | 496 | 485 | 487 | 460 | 451 | 402 | Frost MB +7.6% |
+| int = 400 | 535 | 511 | 488 | 503 | 499 | 455 | 441 | Frost MB +4.7% |
+| spirit = 80 | 534 | 495 | 486 | 489 | 464 | 452 | 403 | Frost MB +7.8% |
+| spirit = 200 | 534 | 516 | 487 | 504 | 501 | 454 | 456 | Frost MB +3.4% |
+| race = human | 542 | 516 | 494 | 507 | 496 | 460 | 436 | Frost MB +5.1% |
+| race = gnome | 538 | 509 | 490 | 500 | 496 | 456 | 429 | Frost MB +5.7% |
+| race = skyborne | 538 | 506 | 490 | 497 | 486 | 456 | 421 | Frost MB +6.4% |
+| race = orc | 538 | 507 | 490 | 499 | 488 | 456 | 425 | Frost MB +6.1% |
+| race = undead | 543 | 511 | 494 | 504 | 493 | 461 | 432 | Frost MB +6.1% |
+| race = troll | 537 | 505 | 489 | 496 | 486 | 455 | 421 | Frost MB +6.3% |
+| fireImmune = True | 534 | out | 486 | 441 | 485 | 450 | out | Frost MB +10.0% |
+
+### Pairs of untested flips that change the leader
+
+| flips | leader, margin over #2 |
+|---|---|
+| topRanks = True, fingersOnBoss = False | Arcane +0.6% |
+| downrank = full, iceLanceCoef = 0 | Fire AB +1.6% |
+| downrank = full, fingersOnBoss = False | Fire AB +1.6% |
+| iceLanceCoef = 0, abMask = tooltip | Arc/Ignite +1.7% |
+| iceLanceCoef = 0, amSpends = True | Arc/Ignite +0.1% |
+| iceLanceCoef = 0, regenStack = full | Fire AB +1.6% |
+| iceLanceCoef = 0, evocation = 0.5 | Fire AB +0.3% |
+| iceLanceCoef = 0, evocation = 0 | Fire AB +0.1% |
+| iceLanceCoef = 0, igniteMunch = 0.15 | Fire AB +0.8% |
+| iceLanceCoef = 0, igniteMunch = 0.3 | Fire AB +0.5% |
+| iceLanceCoef = 0, mbRate = 0.5 | Fire AB +2.3% |
+| iceLanceCoef = 0, levelResist = False | Fire AB +1.6% |
+| iceLanceCoef = 0, iceLanceBinary = False | Fire AB +1.6% |
+| iceLanceCoef = 0, fingersOnBoss = False | Fire AB +1.6% |
+| iceLanceCoef = 0.429, fingersOnBoss = False | Fire AB +1.6% |
+| iceLanceCoef = 0.572, fingersOnBoss = False | Fire AB +1.6% |
+| abMask = tooltip, levelResist = False | Arc/Ignite +2.3% |
+| abMask = tooltip, fingersOnBoss = False | Arc/Ignite +1.7% |
+| amSpends = True, fingersOnBoss = False | Arc/Ignite +0.1% |
+| regenStack = max, fingersOnBoss = False | Fire AB +0.1% |
+| regenStack = full, fingersOnBoss = False | Fire AB +1.6% |
+| evocation = 0.5, fingersOnBoss = False | Fire AB +0.3% |
+| evocation = 0, fingersOnBoss = False | Fire AB +0.1% |
+| igniteMunch = 0.15, fingersOnBoss = False | Fire AB +0.8% |
+| igniteMunch = 0.3, fingersOnBoss = False | Fire AB +0.5% |
+| mbRate = 0.5, fingersOnBoss = False | Fire AB +2.5% |
+| levelResist = False, fingersOnBoss = False | Fire AB +1.6% |
+| iceLanceBinary = False, fingersOnBoss = False | Fire AB +1.6% |
+
+=== raid_check.py 1000 ===
+Frost with Barrage 18/3/30 model   534.2   dice   531.5 +- 0.7   model - dice +0.51%
+     Frostbolt                        model  297.8  dice  296.6
+     Ice Lance (Fingers)              model  142.9  dice  142.5
+     Arcane Missiles (Barrage)        model   93.6  dice   92.4
+     Wand                             model    0.0  dice    0.0
+     casts: Frostbolt 86.6, Ice Lance (Fingers) 26.0
+     model uses: Frostbolt 66.1
+     filler time [1.0]; waiting 0.0 s; end mana 3252; evocations 0.13
+Fire with Arcane Blast 19/31/1 model   503.4   dice   502.8 +- 0.7   model - dice +0.13%
+     Fireball                         model  135.4  dice  122.0
+     Fire Blast                       model   89.3  dice   82.4
+     Arcane Missiles (Barrage)        model   75.4  dice   75.7
+     Fireball (stacks)                model   61.0  dice   69.1
+     Arcane Blast                     model   36.3  dice   43.7
+     Ignite                           model   34.0  dice   38.7
+     Pyroblast (Heating Up)           model   28.0  dice   41.9
+     Scorch (Fire Vulnerability)      model   26.9  dice   29.1
+     Combustion                       model   16.9  dice    0.0
+     Wand                             model    0.0  dice    0.1
+     casts: Arcane Blast 16.7, Fire Blast 28.7, Fireball 29.8, Fireball (stacks) 15.2, Pyroblast (Heating Up) 6.3, Scorch (Fire Vulnerability) 17.1
+     model uses: Fireball 20.6, Arcane Blast x1 + Fireball 13.9, Fire Blast 31.6, Evocation 1.0
+     filler time [0.491, 0.509]; waiting 0.8 s; end mana 1413; evocations 1.00
+Arcane 31/3/17           model   486.1   dice   482.2 +- 0.4   model - dice +0.81%
+     Frostbolt (stacks)               model  166.0  dice  136.5
+     Arcane Missiles (Barrage)        model  150.7  dice  128.9
+     Arcane Blast                     model  141.7  dice  132.4
+     Fire Blast                       model   20.8  dice   75.3
+     Fireball                         model    6.9  dice    9.0
+     Wand                             model    0.0  dice    0.0
+     casts: Arcane Blast 42.1, Fire Blast 30.6, Fireball 2.0, Frostbolt (stacks) 37.0
+     model uses: Arcane Blast x1 + Frostbolt 45.0, Fire Blast 8.5, Presence of Mind: Fireball 2.0
+     filler time [1.0]; waiting 0.1 s; end mana 2745; evocations 0.59
+Arcane with Ignite 31/19/1 model   495.5   dice   493.6 +- 0.6   model - dice +0.39%
+     Fireball (stacks)                model  128.0  dice  125.4
+     Arcane Blast                     model  108.1  dice  110.8
+     Arcane Missiles (Barrage)        model  103.8  dice   99.3
+     Fire Blast                       model   80.6  dice   73.3
+     Scorch (Fire Vulnerability)      model   25.7  dice   28.1
+     Ignite                           model   23.3  dice   22.3
+     Pyroblast (Heating Up)           model   15.6  dice   18.5
+     Pyroblast                        model   10.5  dice   15.7
+     Wand                             model    0.0  dice    0.2
+     casts: Arcane Blast 35.4, Fire Blast 27.3, Fireball (stacks) 29.4, Pyroblast 2.0, Pyroblast (Heating Up) 3.1, Scorch (Fire Vulnerability) 16.9
+     model uses: Arcane Blast x1 + Fireball 25.5, Fire Blast 29.9, Presence of Mind: Pyroblast 2.0, Evocation 0.9
+     filler time [1.0]; waiting 1.1 s; end mana 2218; evocations 1.00
+Frost 14/0/35 (sim build) model   484.7   dice   463.0 +- 0.8   model - dice +4.68%
+     Frostbolt                        model  330.3  dice  313.9
+     Ice Lance (Fingers)              model  153.1  dice  145.8
+     Wand                             model    1.3  dice    3.3
+     casts: Frostbolt 91.9, Ice Lance (Fingers) 27.5
+     model uses: Frostbolt 84.4, Evocation 1.0, Idle 7.5
+     filler time [0.006, 0.994]; waiting 0.0 s; end mana 2118; evocations 1.00
+Arcane 35/0/16 (sim build) model   452.8   dice   446.6 +- 0.4   model - dice +1.40%
+     Arcane Blast                     model  144.6  dice  143.1
+     Arcane Missiles (Barrage)        model  120.3  dice  116.8
+     Frostbolt (stacks)               model  114.5  dice  113.4
+     Fire Blast                       model   66.6  dice   64.3
+     Fireball                         model    6.9  dice    9.1
+     Wand                             model    0.0  dice    0.0
+     casts: Arcane Blast 47.6, Fire Blast 27.2, Fireball 2.0, Frostbolt (stacks) 29.1
+     model uses: Arcane Blast x1 + Frostbolt 12.3, Arcane Blast x2 + Frostbolt 14.4, Fire Blast 28.0, Presence of Mind: Fireball 2.0
+     filler time [0.506, 0.494]; waiting 0.0 s; end mana 1571; evocations 0.98
+Fire 0/35/16 (sim build) model   421.4   dice   407.2 +- 0.6   model - dice +3.48%
+     Scorch                           model  233.8  dice  221.4
+     Pyroblast (Heating Up)           model   70.7  dice   77.7
+     Ignite                           model   40.6  dice   42.5
+     Frostfire Bolt                   model   32.1  dice   49.2
+     Scorch (Fire Vulnerability)      model   27.0  dice    9.3
+     Combustion                       model   12.6  dice    0.0
+     Wand                             model    4.6  dice    7.1
+     casts: Frostfire Bolt 13.9, Pyroblast (Heating Up) 11.4, Scorch 126.1, Scorch (Fire Vulnerability) 5.1
+     model uses: Scorch 133.9, Evocation 1.0, Idle 27.1
+     filler time [0.015, 0.985]; waiting 0.0 s; end mana 1124; evocations 1.00
+worst gap 4.68%
+
+=== leveling_paths.py ===
+
+### Talent orders without respecs, gear 1: seconds per kill by level
+
+| L | planner | frost | fire | arcane |
+|---|---|---|---|---|
+| 10 | 23.74 | 23.74 | 24.17 | 23.30 |
+| 12 | 25.40 | 25.40 | 26.59 | 24.90 |
+| 14 | 26.36 | 26.36 | 25.62 | 24.94 |
+| 16 | 29.27 | 29.27 | 28.18 | 28.07 |
+| 18 | 31.55 | 31.55 | 31.25 | 30.82 |
+| 20 | 28.16 | 28.16 | 30.75 | 29.82 |
+| 22 | 28.38 | 28.38 | 28.81 | 30.21 |
+| 24 | 29.40 | 29.40 | 30.51 | 29.31 |
+| 26 | 28.68 | 28.68 | 31.30 | 28.25 |
+| 28 | 28.10 | 28.10 | 32.78 | 30.61 |
+| 30 | 28.38 | 28.38 | 30.66 | 29.04 |
+| 32 | 25.05 | 25.05 | 29.29 | 25.76 |
+| 34 | 24.25 | 24.25 | 29.94 | 26.83 |
+| 36 | 24.86 | 24.86 | 30.34 | 26.87 |
+| 38 | 24.52 | 24.84 | 28.76 | 27.46 |
+| 40 | 25.20 | 25.75 | 27.41 | 24.77 |
+| 42 | 21.12 | 21.64 | 27.37 | 24.72 |
+| 44 | 21.71 | 22.30 | 27.26 | 24.78 |
+| 46 | 22.18 | 22.17 | 24.67 | 26.39 |
+| 48 | 21.59 | 21.68 | 25.56 | 24.54 |
+| 50 | 20.49 | 21.47 | 25.34 | 22.76 |
+| 52 | 20.81 | 21.21 | 24.92 | 23.61 |
+| 54 | 21.07 | 21.64 | 23.48 | 23.77 |
+| 56 | 20.72 | 21.02 | 24.49 | 22.56 |
+| 58 | 20.42 | 20.94 | 25.01 | 22.63 |
+| 59 | 20.36 | 20.88 | 24.99 | 22.50 |
+| 60 | 19.80 | 20.23 | 23.85 | 22.32 |
+| mean 10-60 | 24.88 | 25.06 | 28.02 | 26.46 |
+| hours 10 to 60 (time-weighted) | 104.4 | 105.6 | 121.1 | 113.9 |
+
+| band | planner | frost | fire | arcane |
+|---|---|---|---|---|
+| 10-19 | 27.86 | 27.86 | 27.81 | 26.79 |
+| 20-29 | 28.71 | 28.71 | 31.35 | 30.11 |
+| 30-39 | 25.33 | 25.45 | 30.08 | 27.57 |
+| 40-49 | 22.32 | 22.52 | 26.47 | 25.15 |
+| 50-60 | 20.62 | 21.16 | 24.72 | 23.05 |
+
+Rotation at 20, 30, 40, 50, 60:
+- planner: 20: Frostbolt +Nova, step back +wand finish +Ice Lance; 30: Frostbolt +Nova, step back +wand finish +Ice Lance; 40: Frostbolt +Nova, step back +melee instants +wand finish +Ice Lance; 50: Fire Blast + Frostbolt +Nova +Ice Lance; 60: Fire Blast + Frostbolt +Nova +Ice Lance
+- frost: 20: Frostbolt +Nova, step back +wand finish +Ice Lance; 30: Frostbolt +Nova, step back +wand finish +Ice Lance; 40: Fire Blast + Frostbolt +Nova +Ice Lance; 50: Frostbolt +Nova +Ice Lance; 60: Frostbolt +Nova +Ice Lance
+- fire: 20: Fire Blast + Arcane Missiles +wand finish; 30: Fire Blast + Scorch +Pyroblast pull +wand finish +Heating Up Pyroblast; 40: Fire Blast + Scorch +Heating Up Pyroblast; 50: Fire Blast + Scorch +Heating Up Pyroblast; 60: Fire Blast + Scorch +Heating Up Pyroblast
+- arcane: 20: Fire Blast + Arcane Missiles +wand finish; 30: Arcane Blast + Frostbolt +Nova, step back +wand finish +Missile Barrage; 40: Arcane Blast + Frostbolt +Nova, step back +melee instants +Missile Barrage; 50: Arcane Blast + Frostbolt +Nova, step back +Missile Barrage; 60: Arcane Blast + Frostbolt +Nova, step back +melee instants +Ice Lance +Missile Barrage
+
+### Sensitivity: mean seconds per kill, even levels 10 to 60, gear 1
+
+| assumption | frost | fire | arcane | ranking |
+|---|---|---|---|---|
+| default | 24.86 | 27.63 | 26.12 | frost < arcane < fire |
+| Frostbite freeze never breaks (fb_break 0) | 23.57 (-5.2%) | 27.63 (+0.0%) | 26.12 (+0.0%) | frost < arcane < fire |
+| Frost Nova and Frostbite never break | 20.09 (-19.2%) | 27.50 (-0.5%) | 25.33 (-3.0%) | frost < arcane < fire |
+| Frost Nova and Frostbite break on every hit | 25.52 (+2.6%) | 27.63 (+0.0%) | 26.78 (+2.5%) | frost < arcane < fire |
+| wand shots never break roots (m12) | 24.81 (-0.2%) | 27.62 (-0.0%) | 26.04 (-0.3%) | frost < arcane < fire |
+| no stepping back after a root | 25.02 (+0.6%) | 27.63 (+0.0%) | 29.30 (+12.2%) | frost < fire < arcane |
+| no spell pushback | 24.68 (-0.7%) | 27.12 (-1.8%) | 25.98 (-0.5%) | frost < arcane < fire |
+| mob damage x1.5 (test m16) | 24.99 (+0.5%) | 28.91 (+4.7%) | 26.81 (+2.7%) | frost < arcane < fire |
+| mob damage x0.7 | 24.75 (-0.5%) | 26.89 (-2.7%) | 25.65 (-1.8%) | frost < arcane < fire |
+| Ice Lance coefficient 0 (client) | 25.41 (+2.2%) | 27.63 (+0.0%) | 26.12 (+0.0%) | frost < arcane < fire |
+| Ice Lance coefficient 0.429 | 23.85 (-4.1%) | 27.63 (+0.0%) | 26.11 (-0.0%) | frost < arcane < fire |
+| low ranks keep full strength from 20 (m13) | 24.54 (-1.3%) | 27.63 (+0.0%) | 26.11 (-0.0%) | frost < arcane < fire |
+| casting regen: the larger of Mage Armor and Meditation | 24.86 (+0.0%) | 27.63 (+0.0%) | 26.52 (+1.5%) | frost < arcane < fire |
+| no Spirit regen while drinking | 26.01 (+4.6%) | 29.11 (+5.4%) | 26.77 (+2.5%) | frost < arcane < fire |
+| Wowhead drink totals (25/26) | 24.96 (+0.4%) | 27.79 (+0.6%) | 26.18 (+0.2%) | frost < arcane < fire |
+| no mana potions | 27.03 (+8.7%) | 29.40 (+6.4%) | 27.40 (+4.9%) | frost < arcane < fire |
+| Frost or Ice Armor instead of Mage Armor from 34 | 25.20 (+1.4%) | 27.86 (+0.9%) | 26.49 (+1.4%) | frost < arcane < fire |
+| armor chills do not roll Frostbite (test m17) | 24.91 (+0.2%) | 27.63 (+0.0%) | 26.12 (+0.0%) | frost < arcane < fire |
+| mobs run 7 yd/s | 24.80 (-0.2%) | 27.39 (-0.9%) | 25.85 (-1.0%) | frost < arcane < fire |
+| top-rank tomes (test m6) | 24.88 (+0.1%) | 27.63 (+0.0%) | 26.07 (-0.2%) | frost < arcane < fire |
+
+### Respec plans against one fixed order, gear 1
+
+- Best single order: planner, 104.35 h from 10 to 60 (mean 24.88 s per kill).
+- Upper bound, the best of the 4 orders at every level (a respec at any level): 103.83 h (-0.50%); level-weighted -0.99%.
+- Best one-respec plan: arcane to level 19, then planner from 20: 103.98 h (-0.36% time-weighted; -0.85% level-weighted).
+- Share of leveling time spent in levels 10 to 19: 8.8%.
+- Levels where another order is more than 1% faster than planner: 10 (arcane), 11 (arcane), 12 (arcane), 14 (fire), 14 (arcane), 15 (fire), 15 (arcane), 16 (fire), 16 (arcane), 17 (fire), 17 (arcane), 18 (arcane), 19 (fire), 19 (arcane), 25 (arcane), 26 (arcane), 40 (arcane), 41 (frost), 41 (arcane)
+
+### Best rotation by level, planner build, gear 1
+
+| L | s per kill | fight | rest | potions per kill | rotation |
+|---|---|---|---|---|---|
+| 10 | 23.74 | 12.6 | 3.2 | 0.20 | Frostbolt +wand finish |
+| 11 | 24.24 | 13.2 | 3.1 | 0.20 | Frostbolt +wand finish |
+| 12 | 25.40 | 13.7 | 3.7 | 0.21 | Frostbolt +wand finish |
+| 13 | 26.59 | 15.0 | 3.6 | 0.22 | Frostbolt +wand finish |
+| 14 | 26.36 | 14.3 | 4.1 | 0.22 | Fire Blast + Frostbolt +wand finish |
+| 15 | 28.27 | 14.8 | 5.5 | 0.24 | Fire Blast + Frostbolt +wand finish |
+| 16 | 29.27 | 15.2 | 6.1 | 0.24 | Fire Blast + Frostbolt +wand finish |
+| 17 | 30.36 | 16.2 | 6.2 | 0.25 | Fire Blast + Frostbolt +wand finish |
+| 18 | 31.55 | 16.8 | 6.8 | 0.26 | Fire Blast + Frostbolt +wand finish |
+| 19 | 32.87 | 18.1 | 6.8 | 0.27 | Fire Blast + Frostbolt +wand finish |
+| 20 | 28.16 | 15.9 | 4.2 | 0.23 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 21 | 28.81 | 15.5 | 5.3 | 0.16 | Frostbolt +wand finish +Ice Lance |
+| 22 | 28.38 | 16.2 | 4.2 | 0.24 | Fire Blast + Frostbolt +Nova +wand finish +Ice Lance |
+| 23 | 28.83 | 17.4 | 3.4 | 0.24 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 24 | 29.40 | 16.2 | 5.2 | 0.24 | Fire Blast + Wand +Nova +Ice Lance |
+| 25 | 29.40 | 18.2 | 3.2 | 0.24 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 26 | 28.68 | 16.1 | 4.6 | 0.24 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 27 | 28.59 | 16.0 | 4.6 | 0.24 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 28 | 28.10 | 15.9 | 4.2 | 0.23 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 29 | 28.80 | 16.5 | 4.3 | 0.24 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 30 | 28.38 | 16.3 | 4.1 | 0.24 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 31 | 25.87 | 15.0 | 2.8 | 0.22 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 32 | 25.05 | 12.9 | 4.2 | 0.21 | Frostbolt +Nova +wand finish +Ice Lance |
+| 33 | 24.91 | 12.7 | 4.2 | 0.21 | Frostbolt +wand finish +Ice Lance |
+| 34 | 24.25 | 13.8 | 2.4 | 0.20 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 35 | 24.38 | 14.0 | 2.3 | 0.20 | Frostbolt +Nova, step back +Ice Lance |
+| 36 | 24.86 | 12.1 | 4.8 | 0.21 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 37 | 25.94 | 15.4 | 2.6 | 0.22 | Frostbolt +Nova, step back +Ice Lance |
+| 38 | 24.52 | 12.9 | 3.6 | 0.20 | Frostbolt +Nova, step back +melee instants +wand finish +Ice Lance |
+| 39 | 25.13 | 14.2 | 3.0 | 0.21 | Frostbolt +Nova, step back +melee instants +wand finish +Ice Lance |
+| 40 | 25.20 | 14.3 | 2.9 | 0.21 | Frostbolt +Nova, step back +melee instants +wand finish +Ice Lance |
+| 41 | 24.82 | 11.9 | 4.9 | 0.21 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 42 | 21.12 | 10.3 | 2.9 | 0.18 | Frostbolt +Nova +Ice Lance |
+| 43 | 21.60 | 10.7 | 2.9 | 0.18 | Frostbolt +Nova +Ice Lance |
+| 44 | 21.71 | 9.4 | 4.3 | 0.18 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 45 | 21.64 | 9.4 | 4.3 | 0.18 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 46 | 22.18 | 9.4 | 4.8 | 0.18 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 47 | 22.12 | 9.4 | 4.8 | 0.18 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 48 | 21.59 | 8.9 | 4.7 | 0.18 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 49 | 21.20 | 9.4 | 3.8 | 0.18 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 50 | 20.49 | 8.9 | 3.6 | 0.17 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 51 | 20.91 | 9.4 | 3.5 | 0.17 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 52 | 20.81 | 9.4 | 3.4 | 0.17 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 53 | 20.75 | 9.4 | 3.4 | 0.17 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 54 | 21.07 | 9.4 | 3.7 | 0.18 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 55 | 20.88 | 9.4 | 3.5 | 0.17 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 56 | 20.72 | 9.7 | 3.0 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 57 | 20.57 | 9.7 | 2.9 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 58 | 20.42 | 9.7 | 2.7 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 59 | 20.36 | 9.7 | 2.7 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 60 | 19.80 | 8.9 | 2.9 | 0.17 | Fire Blast + Frostbolt +Nova +Ice Lance |
+
+### Best rotation by level, planner build, gear 2
+
+| L | s per kill | fight | rest | potions per kill | rotation |
+|---|---|---|---|---|---|
+| 10 | 21.63 | 11.3 | 2.3 | 0.18 | Frostbolt +wand finish |
+| 11 | 22.13 | 11.7 | 2.4 | 0.18 | Frostbolt +wand finish |
+| 12 | 22.85 | 12.4 | 2.4 | 0.19 | Frostbolt +wand finish |
+| 13 | 24.21 | 13.0 | 3.2 | 0.20 | Frostbolt +wand finish |
+| 14 | 24.05 | 12.7 | 3.3 | 0.20 | Frostbolt +wand finish |
+| 15 | 25.37 | 13.8 | 3.5 | 0.21 | Frostbolt +wand finish |
+| 16 | 26.08 | 14.2 | 3.9 | 0.22 | Fire Blast + Frostbolt +wand finish |
+| 17 | 27.18 | 14.9 | 4.2 | 0.23 | Frostbolt +wand finish |
+| 18 | 28.09 | 15.2 | 4.9 | 0.23 | Fire Blast + Frostbolt +wand finish |
+| 19 | 29.35 | 15.8 | 5.5 | 0.24 | Fire Blast + Frostbolt +wand finish |
+| 20 | 25.51 | 13.4 | 4.1 | 0.21 | Fire Blast + Frostbolt +Nova +wand finish +Ice Lance |
+| 21 | 25.78 | 14.2 | 3.5 | 0.21 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 22 | 25.46 | 13.8 | 3.6 | 0.21 | Fire Blast + Frostbolt +Nova +wand finish +Ice Lance |
+| 23 | 26.05 | 15.7 | 2.3 | 0.22 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 24 | 26.69 | 16.6 | 2.1 | 0.22 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 25 | 26.26 | 11.8 | 6.5 | 0.22 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 26 | 26.86 | 12.8 | 6.1 | 0.22 | Fire Blast + Frostbolt +Nova +wand finish +Ice Lance |
+| 27 | 26.82 | 12.8 | 6.0 | 0.22 | Fire Blast + Frostbolt +Nova +wand finish +Ice Lance |
+| 28 | 26.45 | 14.5 | 4.0 | 0.22 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 29 | 26.70 | 15.0 | 3.7 | 0.22 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 30 | 26.51 | 14.4 | 4.1 | 0.22 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 31 | 23.23 | 11.3 | 3.9 | 0.19 | Frostbolt +Nova +Ice Lance |
+| 32 | 23.79 | 10.8 | 4.9 | 0.20 | Fire Blast + Frostbolt +wand finish +Ice Lance |
+| 33 | 23.39 | 11.3 | 4.0 | 0.19 | Frostbolt +Nova +Ice Lance |
+| 34 | 21.89 | 10.8 | 3.0 | 0.18 | Frostbolt +Nova +Ice Lance |
+| 35 | 22.20 | 12.2 | 2.0 | 0.19 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 36 | 22.27 | 12.4 | 1.9 | 0.19 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 37 | 22.72 | 11.3 | 3.4 | 0.19 | Frostbolt +Nova +melee instants +wand finish +Ice Lance |
+| 38 | 22.07 | 10.8 | 3.2 | 0.18 | Frostbolt +Nova +Ice Lance |
+| 39 | 22.78 | 12.1 | 2.7 | 0.19 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 40 | 22.88 | 12.2 | 2.7 | 0.19 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 41 | 22.06 | 12.6 | 1.5 | 0.18 | Frostbolt +Nova, step back +wand finish +Ice Lance |
+| 42 | 20.40 | 9.8 | 2.6 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 43 | 20.19 | 9.7 | 2.5 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 44 | 20.94 | 9.7 | 3.2 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 45 | 20.87 | 9.7 | 3.2 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 46 | 20.81 | 9.7 | 3.1 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 47 | 21.44 | 8.9 | 4.6 | 0.18 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 48 | 21.00 | 9.7 | 3.3 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 49 | 19.95 | 9.7 | 2.3 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 50 | 20.19 | 9.7 | 2.5 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 51 | 20.03 | 9.7 | 2.3 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 52 | 20.03 | 9.7 | 2.3 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 53 | 20.11 | 8.9 | 3.2 | 0.17 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 54 | 20.44 | 8.9 | 3.6 | 0.17 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 55 | 20.26 | 8.9 | 3.4 | 0.17 | Fire Blast + Frostbolt +Nova +Ice Lance |
+| 56 | 19.26 | 8.2 | 3.1 | 0.16 | Frostbolt +melee instants +Ice Lance |
+| 57 | 19.87 | 9.2 | 2.7 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 58 | 20.42 | 9.7 | 2.7 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 59 | 20.36 | 9.7 | 2.7 | 0.17 | Frostbolt +Nova +Ice Lance |
+| 60 | 19.74 | 8.4 | 3.4 | 0.16 | Fire Blast + Frostbolt +melee instants +Ice Lance |
+
+### Mana potions, planner build, gear 1
+
+| L | s per kill with potions | without | change | potions an hour | potion | gold an hour at the client price |
+|---|---|---|---|---|---|---|
+| 10 | 23.74 | 24.90 | -4.6% | 30.0 | Minor Mana Potion | 0.12 g |
+| 14 | 26.36 | 28.57 | -7.7% | 30.0 | Lesser Mana Potion | 0.36 g |
+| 15 | 28.27 | 29.89 | -5.4% | 30.0 | Lesser Mana Potion | 0.36 g |
+| 20 | 28.16 | 29.85 | -5.6% | 30.0 | Lesser Mana Potion | 0.36 g |
+| 22 | 28.38 | 30.30 | -6.3% | 30.0 | Mana Potion | 1.44 g |
+| 25 | 29.40 | 30.80 | -4.5% | 30.0 | Mana Potion | 1.44 g |
+| 30 | 28.38 | 30.42 | -6.7% | 30.0 | Mana Potion | 1.44 g |
+| 31 | 25.87 | 28.28 | -8.5% | 30.0 | Greater Mana Potion | 1.44 g |
+| 35 | 24.38 | 26.67 | -8.6% | 30.0 | Greater Mana Potion | 1.44 g |
+| 40 | 25.20 | 27.36 | -7.9% | 30.0 | Greater Mana Potion | 1.44 g |
+| 41 | 24.82 | 27.45 | -9.6% | 30.0 | Superior Mana Potion | 4.80 g |
+| 45 | 21.64 | 24.09 | -10.1% | 30.0 | Superior Mana Potion | 4.80 g |
+| 49 | 21.20 | 24.70 | -14.2% | 30.0 | Major Mana Potion | 18.00 g |
+| 50 | 20.49 | 23.32 | -12.1% | 30.0 | Major Mana Potion | 18.00 g |
+| 55 | 20.88 | 23.44 | -10.9% | 30.0 | Major Mana Potion | 18.00 g |
+| 60 | 19.80 | 21.60 | -8.3% | 30.0 | Major Mana Potion | 18.00 g |
+| mean 10-60 | 24.88 | 27.08 | -8.1% | | | |
+
+Time-weighted, 10 to 60: 104.4 h with potions, 114.9 h without (-9.2%).
+Mana gems on vs off change nothing at any level: True (conjuring a gem costs more mana than it restores: Agate 530 for 400, Jade 800 for 600, Citrine 1130 for 850, Ruby 1470 for 1100).
+Evocation uses per kill, levels 20 to 60: 0.031 to 0.061.
+
+### Races, planner build, gear 1
+
+| race | mean s per kill 10-60 | vs no race | hours 10-60 | vs no race | 10-19 | 20-29 | 30-39 | 40-49 | 50-60 |
+|---|---|---|---|---|---|---|---|---|---|
+| none | 24.88 | +0.0% | 104.4 | +0.0% | 27.86 | 28.71 | 25.33 | 22.32 | 20.62 |
+| human | 24.62 | -1.1% | 103.2 | -1.1% | 27.75 | 28.37 | 24.80 | 22.05 | 20.52 |
+| gnome | 24.61 | -1.1% | 103.4 | -0.9% | 27.45 | 28.40 | 24.93 | 22.15 | 20.54 |
+| skyborne | 24.26 | -2.5% | 102.3 | -1.9% | 26.73 | 27.91 | 24.58 | 21.93 | 20.54 |
+| orc | 24.76 | -0.5% | 103.9 | -0.4% | 27.69 | 28.57 | 25.16 | 22.24 | 20.57 |
+| undead | 23.92 | -3.9% | 101.0 | -3.2% | 26.31 | 27.40 | 24.20 | 21.70 | 20.35 |
+| troll | 24.45 | -1.7% | 103.0 | -1.3% | 27.22 | 28.07 | 24.68 | 22.06 | 20.62 |
+| undead, spells only (m23) | 24.04 | -3.4% | 101.3 | -2.9% | 26.56 | 27.66 | 24.31 | 21.70 | 20.35 |
+
+### Low ranks from level 20 (option low_ranks, test m13), planner build, gear 1
+
+| option | mean s per kill 20-60 | vs default | hours 20-60 | from 34: mean | from 34 vs default | rotation at 40 | at 60 |
+|---|---|---|---|---|---|---|---|
+| measured (default: top rank from 20) | 24.16 | +0.0% | 95.2 | 22.19 | +0.0% | Frostbolt +Nova, step back +melee instants +wand finish +Ice Lance | Fire Blast + Frostbolt +Nova +Ice Lance |
+| full (low ranks keep full strength) | 23.81 | -1.4% | 93.9 | 21.94 | -1.1% | Frostbolt +Nova, step back after freezes (rank 1) +Ice Lance | Fire Blast + Frostbolt +Nova +Ice Lance |
+| tbc ((max level + 6) / level) | 23.89 | -1.1% | 94.2 | 22.03 | -0.7% | Fire Blast + Frostbolt +Nova, step back (1 rank down) +Ice Lance | Fire Blast + Frostbolt +Nova +Ice Lance |
+| classic (below-20 cut) | 23.92 | -1.0% | 94.2 | 22.03 | -0.7% | Fire Blast + Frostbolt +Nova, step back (1 rank down) +Ice Lance | Fire Blast + Frostbolt +Nova +Ice Lance |
+
+=== leveling_planner.py ===
+frost: greedy mean 28.059 (43 s)
+frost: start 0 (greedy) mean 28.059
+  move round 1: 292 candidates, mean 28.059 -> 27.764
+  move round 2: 321 candidates, mean 27.764 -> 27.479
+  move round 3: 321 candidates, mean 27.479 -> 27.268
+  move round 4: 310 candidates, mean 27.268 -> 27.045
+  move round 5: 314 candidates, mean 27.045 -> 26.855
+  move round 6: 318 candidates, mean 26.855 -> 26.542
+  move round 7: 325 candidates, mean 26.542 -> 26.381
+  move round 8: 325 candidates, mean 26.381 -> 26.265
+  move round 9: 331 candidates, mean 26.265 -> 26.157
+  move round 10: 327 candidates, mean 26.157 -> 26.057
+  move round 11: 325 candidates, mean 26.057 -> 25.998
+  move round 12: 325 candidates, mean 25.998 -> 25.959
+  move round 13: 329 candidates, mean 25.959 -> 25.928
+  move round 14: 323 candidates, mean 25.928 -> 25.893
+  move round 15: 325 candidates, mean 25.893 -> 25.864
+  move round 16: 316 candidates, mean 25.864 -> 25.841
+  move round 17: 318 candidates, mean 25.841 -> 25.795
+  move round 18: 329 candidates, mean 25.795 -> 25.763
+  move round 19: 319 candidates, mean 25.763 -> 25.742
+  move round 20: 311 candidates, mean 25.742 -> 25.715
+frost: start 1 (seed) mean 25.062
+  move round 1: 269 candidates, mean 25.062 -> 25.056
+  move round 2: 262 candidates, mean 25.056 -> 25.056
+frost: after moves 25.056, best of 2 starts (94 s)
+  swap round 1: 64 candidates, mean 25.056 -> 25.055
+  move round 1: 263 candidates, mean 25.055 -> 25.053
+  move round 2: 260 candidates, mean 25.053 -> 25.053
+  move round 3: 269 candidates, mean 25.053 -> 25.053
+  swap round 2: 65 candidates, mean 25.053 -> 25.051
+  move round 1: 269 candidates, mean 25.051 -> 25.050
+  move round 2: 267 candidates, mean 25.050 -> 25.050
+  swap round 3: 64 candidates, mean 25.050 -> 25.050
+frost: after swaps 25.050 (130 s)
+fire: greedy mean 29.219 (29 s)
+fire: start 0 (greedy) mean 29.219
+  move round 1: 280 candidates, mean 29.219 -> 29.127
+  move round 2: 287 candidates, mean 29.127 -> 29.005
+  move round 3: 289 candidates, mean 29.005 -> 28.929
+  move round 4: 281 candidates, mean 28.929 -> 28.837
+  move round 5: 270 candidates, mean 28.837 -> 28.767
+  move round 6: 264 candidates, mean 28.767 -> 28.704
+  move round 7: 257 candidates, mean 28.704 -> 28.657
+  move round 8: 267 candidates, mean 28.657 -> 28.622
+  move round 9: 250 candidates, mean 28.622 -> 28.590
+  move round 10: 256 candidates, mean 28.590 -> 28.567
+  move round 11: 243 candidates, mean 28.567 -> 28.544
+  move round 12: 242 candidates, mean 28.544 -> 28.524
+  move round 13: 238 candidates, mean 28.524 -> 28.505
+  move round 14: 239 candidates, mean 28.505 -> 28.490
+  move round 15: 244 candidates, mean 28.490 -> 28.485
+  move round 16: 246 candidates, mean 28.485 -> 28.484
+  move round 17: 246 candidates, mean 28.484 -> 28.484
+fire: start 1 (seed) mean 28.020
+  move round 1: 193 candidates, mean 28.020 -> 28.020
+fire: after moves 28.020, best of 2 starts (82 s)
+  swap round 1: 21 candidates, mean 28.020 -> 28.020
+fire: after swaps 28.020 (91 s)
+arcane: greedy mean 28.121 (19 s)
+arcane: start 0 (greedy) mean 28.121
+  move round 1: 236 candidates, mean 28.121 -> 27.724
+  move round 2: 258 candidates, mean 27.724 -> 27.515
+  move round 3: 250 candidates, mean 27.515 -> 27.384
+  move round 4: 245 candidates, mean 27.384 -> 27.294
+  move round 5: 241 candidates, mean 27.294 -> 27.205
+  move round 6: 238 candidates, mean 27.205 -> 27.133
+  move round 7: 248 candidates, mean 27.133 -> 27.075
+  move round 8: 242 candidates, mean 27.075 -> 27.020
+  move round 9: 235 candidates, mean 27.020 -> 26.981
+  move round 10: 222 candidates, mean 26.981 -> 26.948
+  move round 11: 217 candidates, mean 26.948 -> 26.919
+  move round 12: 223 candidates, mean 26.919 -> 26.898
+  move round 13: 219 candidates, mean 26.898 -> 26.868
+  move round 14: 203 candidates, mean 26.868 -> 26.850
+  move round 15: 210 candidates, mean 26.850 -> 26.842
+  move round 16: 210 candidates, mean 26.842 -> 26.839
+  move round 17: 224 candidates, mean 26.839 -> 26.790
+  move round 18: 218 candidates, mean 26.790 -> 26.707
+  move round 19: 194 candidates, mean 26.707 -> 26.683
+  move round 20: 192 candidates, mean 26.683 -> 26.663
+arcane: start 1 (seed) mean 26.464
+  move round 1: 218 candidates, mean 26.464 -> 26.455
+  move round 2: 221 candidates, mean 26.455 -> 26.455
+  move round 3: 221 candidates, mean 26.455 -> 26.455
+arcane: after moves 26.455, best of 2 starts (59 s)
+  swap round 1: 20 candidates, mean 26.455 -> 26.455
+arcane: after swaps 26.455 (66 s)
+all: greedy mean 28.367 (21 s)
+all: start 0 (greedy) mean 28.367
+  move round 1: 213 candidates, mean 28.367 -> 27.970
+  move round 2: 235 candidates, mean 27.970 -> 27.761
+  move round 3: 227 candidates, mean 27.761 -> 27.629
+  move round 4: 222 candidates, mean 27.629 -> 27.539
+  move round 5: 218 candidates, mean 27.539 -> 27.451
+  move round 6: 215 candidates, mean 27.451 -> 27.379
+  move round 7: 225 candidates, mean 27.379 -> 27.321
+  move round 8: 219 candidates, mean 27.321 -> 27.265
+  move round 9: 235 candidates, mean 27.265 -> 27.210
+  move round 10: 228 candidates, mean 27.210 -> 27.170
+  move round 11: 215 candidates, mean 27.170 -> 27.138
+  move round 12: 210 candidates, mean 27.138 -> 27.117
+  move round 13: 206 candidates, mean 27.117 -> 27.087
+  move round 14: 190 candidates, mean 27.087 -> 27.069
+  move round 15: 197 candidates, mean 27.069 -> 27.061
+  move round 16: 197 candidates, mean 27.061 -> 27.053
+  move round 17: 209 candidates, mean 27.053 -> 27.050
+  move round 18: 223 candidates, mean 27.050 -> 27.048
+  move round 19: 232 candidates, mean 27.048 -> 27.047
+  move round 20: 233 candidates, mean 27.047 -> 27.045
+all: start 1 (seed) mean 25.050
+  move round 1: 267 candidates, mean 25.050 -> 25.050
+all: start 2 (seed) mean 28.020
+  move round 1: 193 candidates, mean 28.020 -> 28.020
+all: start 3 (seed) mean 26.455
+  move round 1: 221 candidates, mean 26.455 -> 26.455
+all: start 4 (seed) mean 24.883
+  move round 1: 219 candidates, mean 24.883 -> 24.878
+  move round 2: 213 candidates, mean 24.878 -> 24.878
+  move round 3: 199 candidates, mean 24.878 -> 24.878
+all: after moves 24.878, best of 5 starts (37 s)
+  swap round 1: 217 candidates, mean 24.878 -> 24.878
+  move round 1: 201 candidates, mean 24.878 -> 24.878
+  swap round 2: 217 candidates, mean 24.878 -> 24.878
+all: after swaps 24.878 (85 s)
+
+### Orders found (paste into analysis/leveling_paths.py)
+
+FROST = rep(('ImprovedFrostbolt', 5), ('Frostbite', 2), ('IceShards', 2), ('Frostbite', 1), ('IceLance', 1), ('PiercingIce', 3), ('IceShards', 1), ('Shatter', 3), ('IceShards', 2), ('FingersOfFrost', 2), ('FrostChanneling', 3), ('ElementalPrecision', 2), ('ArcticReach', 1), ('ElementalPrecision', 1), ('Permafrost', 2), ('WintersChill', 3), ('ImprovedFrostNova', 1), ('WintersChill', 2), ('ImprovedFrostNova', 1), ('IceBlock', 1), ('ColdSnap', 1), ('ImprovedConeOfCold', 1), ('WandSpecialization', 2), ('ImprovedConeOfCold', 1), ('IceBarrier', 1), ('ArcticReach', 1), ('ImprovedConeOfCold', 1), ('ArcaneFocus', 3), ('ElementalPrecision', 1))
+# legal at every level: True; mean seconds per kill 10 to 60: 25.050
+
+FIRE = rep(('WakeOfFire', 2), ('Incineration', 3), ('Ignite', 5), ('Pyroblast', 1), ('BurningSoul', 1), ('ImprovedFireball', 1), ('BurningSoul', 2), ('HotStreak', 1), ('ImprovedScorch', 3), ('FlameThrowing', 1), ('CriticalMass', 3), ('FlameThrowing', 1), ('Impact', 1), ('FirePower', 4), ('ImprovedFireball', 1), ('Combustion', 1), ('FirePower', 1), ('MasterOfElements', 2), ('Impact', 1), ('ElementalPrecision', 1), ('MasterOfElements', 1), ('ElementalPrecision', 2), ('Impact', 1), ('ElementalPrecision', 2), ('ImprovedFireball', 1), ('BlastWave', 1), ('ImprovedFrostbolt', 1), ('WandSpecialization', 1), ('ImprovedFrostbolt', 4), ('PiercingIce', 1))
+# legal at every level: True; mean seconds per kill 10 to 60: 28.020
+
+ARCANE = rep(('ImprovedChanneling', 1), ('WandSpecialization', 2), ('ArcaneFocus', 2), ('ArcaneConcentration', 2), ('ImprovedChanneling', 1), ('ArcaneConcentration', 2), ('ArcaneFocus', 1), ('ArcaneConcentration', 1), ('ArcaneFocus', 1), ('ImprovedChanneling', 1), ('ArcaneBlast', 1), ('MissileBarrage', 1), ('ArcaneMeditation', 1), ('ArcaneImpact', 2), ('ArcaneMeditation', 1), ('PresenceOfMind', 1), ('ArcaneMeditation', 1), ('ArcaneImpact', 1), ('ArcaneMind', 2), ('ArcaneInstability', 3), ('ImprovedFrostbolt', 1), ('ImprovedChanneling', 2), ('ArcanePower', 1), ('ArcaneMind', 1), ('ImprovedFrostbolt', 1), ('ElementalPrecision', 1), ('ArcaneMind', 1), ('ImprovedFrostbolt', 1), ('ArcaneMind', 1), ('ElementalPrecision', 2), ('ImprovedFrostbolt', 2), ('ElementalPrecision', 2), ('FrostChanneling', 3), ('IceLance', 1), ('Permafrost', 1), ('Shatter', 1), ('ArcaneFocus', 1))
+# legal at every level: True; mean seconds per kill 10 to 60: 26.455
+
+PLANNER = rep(('ImprovedFrostbolt', 5), ('Frostbite', 2), ('IceShards', 2), ('Frostbite', 1), ('IceLance', 1), ('PiercingIce', 3), ('IceShards', 1), ('Shatter', 3), ('IceShards', 2), ('FingersOfFrost', 2), ('FrostChanneling', 3), ('ElementalPrecision', 3), ('Incineration', 3), ('ArcticReach', 1), ('WintersChill', 1), ('ArcticReach', 1), ('WakeOfFire', 2), ('WintersChill', 2), ('Ignite', 1), ('WandSpecialization', 2), ('ArcaneFocus', 3), ('ArcaneConcentration', 5), ('Permafrost', 1), ('ImprovedConeOfCold', 1))
+# legal at every level: True; mean seconds per kill 10 to 60: 24.878
+
+### Seconds per kill by level
+
+| L | frost | fire | arcane | all |
+|---|---|---|---|---|
+| 10 | 23.74 | 24.17 | 23.30 | 23.74 |
+| 11 | 24.24 | 25.01 | 23.68 | 24.24 |
+| 12 | 25.40 | 26.59 | 24.90 | 25.40 |
+| 13 | 26.59 | 28.50 | 26.57 | 26.59 |
+| 14 | 26.36 | 25.62 | 24.94 | 26.36 |
+| 15 | 28.27 | 27.29 | 25.88 | 28.27 |
+| 16 | 29.27 | 28.18 | 28.07 | 29.27 |
+| 17 | 30.36 | 29.29 | 29.04 | 30.36 |
+| 18 | 31.55 | 31.25 | 30.60 | 31.55 |
+| 19 | 32.87 | 32.24 | 30.43 | 32.87 |
+| 20 | 28.16 | 30.75 | 29.82 | 28.16 |
+| 21 | 28.81 | 32.24 | 31.23 | 28.81 |
+| 22 | 28.38 | 28.81 | 30.21 | 28.38 |
+| 23 | 28.83 | 30.10 | 31.18 | 28.83 |
+| 24 | 29.40 | 30.51 | 29.31 | 29.40 |
+| 25 | 29.40 | 30.61 | 28.97 | 29.40 |
+| 26 | 28.68 | 31.30 | 28.25 | 28.68 |
+| 27 | 28.59 | 32.38 | 29.35 | 28.59 |
+| 28 | 28.10 | 32.78 | 30.61 | 28.10 |
+| 29 | 28.80 | 33.99 | 32.16 | 28.80 |
+| 30 | 28.38 | 30.66 | 29.04 | 28.38 |
+| 31 | 25.87 | 29.89 | 29.34 | 25.87 |
+| 32 | 25.05 | 29.29 | 25.76 | 25.05 |
+| 33 | 24.91 | 30.66 | 26.60 | 24.91 |
+| 34 | 24.00 | 29.94 | 26.83 | 24.00 |
+| 35 | 24.38 | 30.79 | 26.87 | 24.38 |
+| 36 | 24.86 | 30.34 | 26.87 | 24.86 |
+| 37 | 25.88 | 30.94 | 28.05 | 25.94 |
+| 38 | 24.84 | 28.76 | 27.46 | 24.52 |
+| 39 | 26.02 | 29.50 | 28.88 | 25.13 |
+| 40 | 25.74 | 27.41 | 24.77 | 25.20 |
+| 41 | 24.44 | 27.29 | 24.44 | 24.82 |
+| 42 | 21.64 | 27.37 | 24.72 | 21.12 |
+| 43 | 21.56 | 26.81 | 25.65 | 21.60 |
+| 44 | 22.30 | 27.26 | 24.77 | 21.71 |
+| 45 | 22.24 | 28.62 | 25.11 | 21.64 |
+| 46 | 22.17 | 24.67 | 26.39 | 22.18 |
+| 47 | 22.11 | 24.97 | 27.16 | 22.12 |
+| 48 | 21.68 | 25.56 | 24.54 | 21.59 |
+| 49 | 21.28 | 24.72 | 23.97 | 21.20 |
+| 50 | 21.13 | 25.34 | 22.76 | 20.49 |
+| 51 | 21.29 | 26.67 | 23.63 | 20.91 |
+| 52 | 21.21 | 24.92 | 23.61 | 20.81 |
+| 53 | 21.16 | 24.96 | 23.55 | 20.75 |
+| 54 | 21.65 | 23.48 | 23.77 | 21.07 |
+| 55 | 21.92 | 23.50 | 23.78 | 20.88 |
+| 56 | 21.02 | 24.49 | 22.56 | 20.72 |
+| 57 | 20.98 | 24.69 | 22.39 | 20.57 |
+| 58 | 20.94 | 25.01 | 22.63 | 20.42 |
+| 59 | 20.88 | 24.99 | 22.50 | 20.34 |
+| 60 | 20.23 | 23.85 | 22.32 | 19.80 |
+
+=== aoe_breakeven.py ===
+Baseline files (the imported single-target model) and this model, last modified:
+- models/character.py: 2026-10-23 17:19:28
+- models/leveling_sim.py: 2026-10-23 17:19:28
+- models/aoe.py: 2026-10-23 17:19:28
+- models/aoe_loops.py: 2026-10-21 20:30:22
+- analysis/leveling_paths.py: 2026-10-23 17:19:28
+
+### Calibration: one mob through the AoE engine against the single-target model
+
+The small-pull loop (planner build, pulled from range) on one mob, against character.evaluate() on the same build. Gate: within 10% at every band (tests/aoe_test.py).
+
+| L | single target s per kill (fight, rest) | AoE engine, one mob (fight, rest) | gap | loop |
+|---|---|---|---|---|
+| 20 | 28.16 (15.9, 4.2) | 28.90 (15.0, 5.9) | +2.6% | {'gap': 18.0, 'cone': False, 'melee': False, 'ib': False, 'fin': 'Wand', 'pots': True} |
+| 25 | 29.40 (18.2, 3.2) | 31.67 (19.2, 4.4) | +7.7% | {'gap': 18.0, 'cone': False, 'melee': False, 'ib': False, 'fin': 'Wand', 'pots': True} |
+| 30 | 28.38 (16.3, 4.1) | 29.83 (16.1, 5.7) | +5.1% | {'gap': 18.0, 'cone': False, 'melee': False, 'ib': False, 'fin': 'Wand', 'pots': True} |
+| 40 | 25.20 (14.3, 2.9) | 26.67 (13.0, 5.6) | +5.8% | {'gap': 12.0, 'cone': True, 'melee': True, 'ib': False, 'fin': 'Wand', 'pots': True} |
+| 50 | 20.49 (8.9, 3.6) | 21.79 (10.3, 3.5) | +6.4% | {'gap': 12.0, 'cone': True, 'melee': True, 'ib': False, 'fin': 'Wand', 'pots': True} |
+| 60 | 19.80 (8.9, 2.9) | 21.67 (10.3, 3.4) | +9.4% | {'gap': 12.0, 'cone': True, 'melee': True, 'ib': False, 'fin': 'Wand', 'pots': True} |
+
+(calibration: 1 s)
+
+### Seconds per kill by pull size, default assumptions (gear 1, no race)
+
+Single target: the planner build, best rotation (character.evaluate). A failed pull shows why: "oom" (out of mana first), "caught" (health under the floor first), "stall". The floor is 25% health at every mob health multiple.
+Small pulls carry the engine bias: how much slower the same engine runs one mob than evaluate() does (the calibration section). Read a small-pull gap net of it.
+
+#### Small pulls: Frost Nova, step out, Frostbolt one mob at a time (planner build)
+
+| L | single target | n=2 | n=3 | n=4 | n=5 | n=6 | n=7 | n=8 | n=9 | n=10 | breakeven n (fastest) | largest safe n | engine bias, one mob |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 20 | 28.2 | 30.8 | oom | caught | caught | caught | caught | caught | caught | caught | none, +9% at 2 | 2 | +2.6% |
+| 25 | 29.4 | 42.6 | caught | caught | caught | caught | caught | caught | caught | caught | none, +45% at 2 | 2 | +7.7% |
+| 30 | 28.4 | 34.2 | caught | caught | caught | caught | caught | caught | caught | caught | none, +20% at 2 | 2 | +5.1% |
+| 40 | 25.2 | 31.8 | caught | oom | caught | caught | caught | caught | caught | caught | none, +26% at 2 | 2 | +5.8% |
+| 50 | 20.5 | 22.9 | 40.0 | caught | caught | caught | caught | caught | caught | caught | none, +12% at 2 | 3 | +6.4% |
+| 60 | 19.8 | 20.8 | caught | caught | caught | caught | caught | caught | caught | caught | none, +5% at 2 | 2 | +9.4% |
+
+#### Frost AoE loop (Nova, Blizzard, Cone, Arcane Explosion)
+
+| L | single target | n=2 | n=3 | n=4 | n=5 | n=6 | n=7 | n=8 | n=9 | n=10 | breakeven n (fastest) | largest safe n |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 20 | 28.2 | oom | oom | oom | oom | oom | oom | oom | caught | oom | none (oom 2-8, caught 9, oom 10) | none |
+| 25 | 29.4 | oom | oom | oom | caught | caught | caught | caught | caught | caught | none (oom 2-4, caught 5-10) | none |
+| 30 | 28.4 | oom | oom | oom | oom | caught | caught | caught | caught | oom | none (oom 2-5, caught 6-9, oom 10) | none |
+| 40 | 25.2 | oom | oom | oom | oom | oom | oom | caught | oom | oom | none (oom 2-7, caught 8, oom 9-10) | none |
+| 50 | 20.5 | oom | oom | caught | oom | oom | oom | caught | caught | oom | none (oom 2-3, caught 4, oom 5-7, caught 8-9, oom 10) | none |
+| 60 | 19.8 | oom | oom | oom | oom | caught | oom | caught | caught | oom | none (oom 2-5, caught 6, oom 7, caught 8-9, oom 10) | none |
+
+#### Arcane Explosion in melee after Frost Nova
+
+| L | single target | n=2 | n=3 | n=4 | n=5 | n=6 | n=7 | n=8 | n=9 | n=10 | breakeven n (fastest) | largest safe n |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 20 | 28.2 | oom | oom | oom | oom | caught | caught | caught | caught | caught | none (oom 2-5, caught 6-10) | none |
+| 25 | 29.4 | oom | oom | caught | oom | caught | caught | caught | caught | caught | none (oom 2-3, caught 4, oom 5, caught 6-10) | none |
+| 30 | 28.4 | oom | oom | caught | caught | oom | caught | caught | caught | caught | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none |
+| 40 | 25.2 | oom | oom | oom | caught | oom | caught | caught | caught | caught | none (oom 2-4, caught 5, oom 6, caught 7-10) | none |
+| 50 | 20.5 | oom | oom | caught | caught | caught | caught | caught | caught | caught | none (oom 2-3, caught 4-10) | none |
+| 60 | 19.8 | oom | oom | caught | caught | caught | caught | caught | caught | caught | none (oom 2-3, caught 4-10) | none |
+
+#### Flamestrike with Arcane Explosion (Fire build)
+
+| L | single target | n=2 | n=3 | n=4 | n=5 | n=6 | n=7 | n=8 | n=9 | n=10 | breakeven n (fastest) | largest safe n |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 20 | 28.2 | oom | oom | oom | oom | caught | caught | oom | oom | caught | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none |
+| 25 | 29.4 | oom | oom | caught | caught | caught | caught | caught | caught | caught | none (oom 2-3, caught 4-10) | none |
+| 30 | 28.4 | oom | oom | caught | caught | oom | caught | caught | caught | caught | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none |
+| 40 | 25.2 | oom | oom | oom | caught | oom | oom | caught | caught | caught | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none |
+| 50 | 20.5 | oom | caught | oom | caught | caught | caught | caught | caught | caught | none (oom 2, caught 3, oom 4, caught 5-10) | none |
+| 60 | 19.8 | oom | caught | caught | caught | caught | caught | caught | caught | caught | none (oom 2, caught 3-10) | none |
+
+#### Cone of Cold kiting with Frostbolt (small groups)
+
+| L | single target | n=2 | n=3 | n=4 | n=5 | n=6 | n=7 | n=8 | n=9 | n=10 | breakeven n (fastest) | largest safe n |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 30 | 28.4 | oom | oom | caught | caught | caught | caught | caught | caught | caught | none (oom 2-3, caught 4-10) | none |
+| 40 | 25.2 | 60.6 | oom | oom | caught | caught | oom | caught | caught | caught | none, +140% at 2 | 2 |
+| 50 | 20.5 | 60.0 | 40.0 | oom | caught | oom | caught | caught | caught | caught | none, +95% at 3 | 3 |
+| 60 | 19.8 | 60.0 | oom | oom | caught | caught | caught | caught | caught | caught | none, +203% at 2 | 2 |
+
+(defaults: 17 s)
+
+### How pulls fail at the defaults (mob health x1.0, the loop variant kept)
+
+"oom at t s (h% health, p% of the pack left)": out of mana for the loop's damage spells at t seconds, at h% of her health, with p% of the pack's total health still standing; she is beaten down after. "caught at t s": under the safety floor at t seconds with mana left. "ok": the pull survives (seconds per kill).
+
+#### Small pulls: Frost Nova, step out, Frostbolt one mob at a time (planner build)
+
+| L | n=3 | n=4 | n=6 | n=10 |
+|---|---|---|---|---|
+| 20 | oom at 31 s (45% health, 40% of the pack left) | caught at 30 s | caught at 11 s | caught at 8 s |
+| 25 | caught at 32 s | caught at 28 s | caught at 10 s | caught at 8 s |
+| 30 | caught at 40 s | caught at 18 s | caught at 21 s | caught at 17 s |
+| 40 | caught at 29 s | oom | caught at 16 s | caught at 16 s |
+| 50 | ok 40.0 | caught at 24 s | caught at 18 s | caught at 16 s |
+| 60 | caught at 34 s | caught at 24 s | caught at 17 s | caught at 17 s |
+
+#### Frost AoE loop (Nova, Blizzard, Cone, Arcane Explosion)
+
+| L | n=3 | n=4 | n=6 | n=10 |
+|---|---|---|---|---|
+| 20 | oom at 20 s (43% health, 62% of the pack left) | oom at 18 s (43% health, 63% of the pack left) | oom at 17 s (34% health, 66% of the pack left) | oom at 18 s (32% health, 77% of the pack left) |
+| 25 | oom at 22 s (45% health, 54% of the pack left) | oom at 25 s (28% health, 48% of the pack left) | caught at 18 s | caught at 11 s |
+| 30 | oom at 31 s (58% health, 59% of the pack left) | oom at 17 s (37% health, 54% of the pack left) | caught at 19 s | oom at 11 s (26% health, 83% of the pack left) |
+| 40 | oom at 32 s (74% health, 36% of the pack left) | oom at 23 s (94% health, 62% of the pack left) | oom at 13 s (57% health, 72% of the pack left) | oom at 20 s (57% health, 70% of the pack left) |
+| 50 | oom at 17 s (32% health, 44% of the pack left) | caught at 23 s | oom at 31 s (55% health, 58% of the pack left) | oom at 22 s (44% health, 62% of the pack left) |
+| 60 | oom at 36 s (50% health, 3% of the pack left) | oom at 19 s (79% health, 51% of the pack left) | caught at 20 s | oom at 22 s (46% health, 61% of the pack left) |
+
+#### Arcane Explosion in melee after Frost Nova
+
+| L | n=3 | n=4 | n=6 | n=10 |
+|---|---|---|---|---|
+| 20 | oom at 20 s (35% health, 37% of the pack left) | oom at 16 s (44% health, 61% of the pack left) | caught at 10 s | caught at 7 s |
+| 25 | oom at 14 s (44% health, 49% of the pack left) | caught at 13 s | caught at 10 s | caught at 4 s |
+| 30 | oom at 12 s (43% health, 46% of the pack left) | caught at 10 s | oom at 8 s (34% health, 90% of the pack left) | caught at 3 s |
+| 40 | oom at 11 s (42% health, 51% of the pack left) | oom at 11 s (47% health, 42% of the pack left) | oom at 10 s (44% health, 59% of the pack left) | caught at 4 s |
+| 50 | oom at 12 s (40% health, 38% of the pack left) | caught at 12 s | caught at 7 s | caught at 3 s |
+| 60 | oom at 12 s (36% health, 38% of the pack left) | caught at 11 s | caught at 9 s | caught at 3 s |
+
+#### Flamestrike with Arcane Explosion (Fire build)
+
+| L | n=3 | n=4 | n=6 | n=10 |
+|---|---|---|---|---|
+| 20 | oom at 24 s (38% health, 37% of the pack left) | oom at 20 s (42% health, 50% of the pack left) | caught at 17 s | caught at 14 s |
+| 25 | oom at 20 s (34% health, 41% of the pack left) | caught at 17 s | caught at 15 s | caught at 9 s |
+| 30 | oom at 22 s (30% health, 37% of the pack left) | caught at 15 s | oom at 15 s (31% health, 65% of the pack left) | caught at 9 s |
+| 40 | oom at 15 s (38% health, 40% of the pack left) | oom at 11 s (46% health, 51% of the pack left) | oom at 13 s (33% health, 65% of the pack left) | caught at 8 s |
+| 50 | caught at 16 s | oom at 14 s (38% health, 58% of the pack left) | caught at 11 s | caught at 10 s |
+| 60 | caught at 18 s | caught at 14 s | caught at 10 s | caught at 10 s |
+
+#### Cone of Cold kiting with Frostbolt (small groups)
+
+| L | n=3 | n=4 | n=6 | n=10 |
+|---|---|---|---|---|
+| 30 | oom at 49 s (46% health, 40% of the pack left) | caught at 43 s | caught at 11 s | caught at 8 s |
+| 40 | oom at 55 s (43% health, 18% of the pack left) | oom at 47 s (30% health, 41% of the pack left) | caught at 28 s | caught at 9 s |
+| 50 | ok 40.0 | oom at 45 s (29% health, 19% of the pack left) | oom at 22 s (52% health, 53% of the pack left) | caught at 9 s |
+| 60 | oom at 58 s (59% health, 1% of the pack left) | oom at 47 s (22% health, 27% of the pack left) | caught at 24 s | caught at 8 s |
+
+### What a pull of 4 looks like (default assumptions, the loop variant kept)
+
+| arch | L | s per kill | fight s | rest s | lowest health | potion | gem | loop | casts |
+|---|---|---|---|---|---|---|---|---|---|
+| nb | 20 | caught | 34.2 | 30.0 | -0% | False | False | {'gap': 18.0, 'cone': True, 'melee': True, 'pots': False} | ArcaneExplosion 2.0, FrostNova 1.0, Frostbolt 3.0, IceLance 6.0, ManaShield 2.0 |
+| nb | 25 | caught | 32.6 | 70.4 | -0% | True | False | {'gap': 12.0, 'cone': True, 'melee': True, 'ib': False, 'fin': 'Wand', 'pots': True} | FrostNova 1.0, Frostbolt 3.0, IceLance 6.0, ManaShield 6.0 |
+| nb | 30 | caught | 28.2 | 40.0 | -1% | True | True | {'gap': 12.0, 'cone': True, 'melee': True, 'pots': True} | ConeOfCold 1.0, FrostNova 1.0, Frostbolt 4.0, IceLance 3.0, ManaShield 1.0 |
+| nb | 40 | oom | 22.0 | 29.2 | -0% | False | False | {'gap': 18.0, 'cone': False, 'melee': False, 'ib': False, 'fin': 'Wand', 'pots': False} | FrostNova 1.0, Frostbolt 5.0, IceLance 2.0, Wand 1.2 |
+| nb | 50 | caught | 25.6 | 56.6 | -0% | True | True | {'gap': 12.0, 'cone': True, 'melee': True, 'pots': True} | ConeOfCold 1.0, FrostNova 1.0, Frostbolt 4.0, IceLance 8.0, ManaShield 5.0 |
+| nb | 60 | caught | 19.5 | 19.3 | -1% | False | False | {'gap': 12.0, 'cone': True, 'melee': True, 'pots': False} | ConeOfCold 1.0, FrostNova 1.0, Frostbolt 4.0, IceLance 3.0, ManaShield 2.0 |
+| blizzard | 20 | oom | 24.6 | 30.0 | -0% | False | False | {'step': 'short', 'kite': True, 'wait': True, 'finish': 2.0, 'pots': False} | ArcaneExplosion 4.0, Blink 1.0, Blizzard 1.0, FrostNova 1.0, ManaShield 2.0 |
+| blizzard | 25 | oom | 27.7 | 66.3 | -1% | True | False | {'step': 21.0, 'kite': True, 'wait': True, 'finish': 2.0, 'pots': True} | ArcaneExplosion 6.0, Blink 1.0, Blizzard 1.0, FrostNova 1.0, ManaShield 3.0 |
+| blizzard | 30 | oom | 21.1 | 27.1 | -0% | False | False | {'step': 'short', 'kite': True, 'wait': True, 'finish': 2.0, 'pots': False} | ArcaneExplosion 3.0, Blink 1.0, Blizzard 1.0, ConeOfCold 1.0, FrostNova 1.0, ManaShield 1.0 |
+| blizzard | 40 | oom | 41.6 | 29.3 | -0% | False | False | {'step': 'max', 'kite': True, 'wait': True, 'finish': 2.0, 'pots': False} | ArcaneExplosion 3.0, Blink 1.0, Blizzard 1.0, ConeOfCold 1.0, FrostNova 2.0, IceBarrier 1.0, ManaShield 1.0 |
+| blizzard | 50 | caught | 29.7 | 61.3 | -1% | True | True | {'step': 'short', 'kite': False, 'wait': False, 'finish': 2.0, 'pots': True} | ArcaneExplosion 3.0, Blink 1.0, Blizzard 1.0, ConeOfCold 1.0, FrostNova 1.0, IceBarrier 1.0, ManaShield 4.0 |
+| blizzard | 60 | oom | 33.3 | 18.9 | -1% | False | False | {'step': 21.0, 'kite': True, 'wait': True, 'finish': 2.0, 'pots': False} | ArcaneExplosion 2.0, Blink 1.0, Blizzard 1.0, ConeOfCold 1.0, FrostNova 2.0, IceBarrier 1.0, ManaShield 1.0 |
+| ae | 20 | oom | 22.4 | 71.6 | -0% | True | False | {'gap': 0.0, 'pots': True} | ArcaneExplosion 6.0, FrostNova 1.0, ManaShield 4.0 |
+| ae | 25 | caught | 16.8 | 22.4 | -0% | False | False | {'gap': 7.5, 'pots': False} | ArcaneExplosion 6.0, FrostNova 1.0, ManaShield 3.0 |
+| ae | 30 | caught | 13.1 | 27.8 | -1% | False | False | {'gap': 0.0, 'pots': False} | ArcaneExplosion 3.0, ConeOfCold 1.0, FrostNova 1.0, ManaShield 3.0 |
+| ae | 40 | oom | 14.1 | 29.4 | -0% | False | False | {'gap': 7.5, 'pots': False} | ArcaneExplosion 5.0, ConeOfCold 1.0, FrostNova 1.0, ManaShield 1.0 |
+| ae | 50 | caught | 16.9 | 77.1 | -1% | True | False | {'gap': 7.5, 'pots': True} | ArcaneExplosion 4.0, ConeOfCold 2.0, FrostNova 1.0, IceBarrier 1.0, ManaShield 4.0 |
+| ae | 60 | caught | 15.5 | 78.5 | -1% | True | False | {'gap': 7.5, 'pots': True} | ArcaneExplosion 4.0, ConeOfCold 2.0, FrostNova 1.0, IceBarrier 1.0, ManaShield 3.0 |
+| fs | 20 | oom | 25.9 | 68.1 | -0% | True | False | {'gap': 12.0, 'melee': False, 'pots': True} | ArcaneExplosion 7.0, Flamestrike 1.0, FrostNova 1.0, ManaShield 3.0 |
+| fs | 25 | caught | 20.8 | 73.2 | -0% | True | False | {'gap': 12.0, 'melee': False, 'pots': True} | ArcaneExplosion 7.0, Flamestrike 1.0, FrostNova 1.0, ManaShield 3.0 |
+| fs | 30 | caught | 20.1 | 70.9 | -0% | True | True | {'gap': 12.0, 'melee': False, 'pots': True} | ArcaneExplosion 5.0, BlastWave 1.0, Flamestrike 1.0, FrostNova 1.0, ManaShield 4.0 |
+| fs | 40 | oom | 14.8 | 29.5 | -1% | False | False | {'gap': 12.0, 'melee': False, 'pots': False} | ArcaneExplosion 3.0, BlastWave 1.0, Flamestrike 1.0, FrostNova 1.0, ManaShield 2.0 |
+| fs | 50 | oom | 16.5 | 29.8 | -0% | False | False | {'gap': 20.0, 'melee': False, 'pots': False} | ArcaneExplosion 2.0, BlastWave 1.0, Flamestrike 1.0, FrostNova 1.0, ManaShield 2.0 |
+| fs | 60 | caught | 16.7 | 77.3 | -0% | True | False | {'gap': 20.0, 'melee': False, 'pots': True} | ArcaneExplosion 4.0, BlastWave 1.0, Flamestrike 1.0, FrostNova 1.0, ManaShield 2.0 |
+| cone | 30 | caught | 45.9 | 54.1 | -0% | True | True | {'gap': 9.0, 'finish': 2.0, 'pots': True} | ConeOfCold 3.0, FrostNova 2.0, Frostbolt 8.0, ManaShield 4.0 |
+| cone | 40 | oom | 45.7 | 54.3 | -1% | True | True | {'gap': 9.0, 'finish': 2.0, 'pots': True} | Blink 1.0, ConeOfCold 3.0, FrostNova 2.0, Frostbolt 10.0, IceBarrier 1.0, ManaShield 2.0 |
+| cone | 50 | oom | 46.1 | 53.9 | -1% | True | True | {'gap': 9.0, 'finish': 2.0, 'pots': True} | ArcaneExplosion 1.0, ConeOfCold 4.0, FrostNova 2.0, Frostbolt 8.0, IceBarrier 1.0, ManaShield 2.0 |
+| cone | 60 | oom | 46.3 | 53.7 | -1% | True | True | {'gap': 9.0, 'finish': 2.0, 'pots': True} | ArcaneExplosion 1.0, Blink 1.0, ConeOfCold 3.0, FrostNova 2.0, Frostbolt 9.0, IceBarrier 1.0, ManaShield 2.0 |
+
+(failures: 0 s)
+
+### The budget of a pull (Frost AoE build, defaults, gear 1)
+
+"Ticks a mob takes": Blizzard ticks landed per mob per cast in the default pulls of 4 and 6 (mob health x1.0), against the 8 a cast has.
+
+| L | mob health | one full Blizzard, per mob hit | Blizzards to kill a mob | their mana | pool | potion + gem | single target mana per kill | Blizzard slow applied | s for a free mob to cross the 16 yd storm | ticks a mob takes, n=4 / n=6 | Mage health | s for 4 mobs in melee to reach the floor |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 20 | 608 | 191 | 3.2 | 1020 | 1216 | 320 | 420 | 25% for 2.0 s | 2.7 | 3.1/2.6 | 537 | 7.2 |
+| 25 | 838 | 192 | 4.4 | 1254 | 1506 | 520 | 457 | 50% for 2.0 s | 4.0 | 5.4/5.1 | 665 | 5.7 |
+| 30 | 1098 | 332 | 3.3 | 1461 | 1968 | 920 | 562 | 50% for 2.0 s | 4.0 | 4.3/5.1 | 815 | 4.9 |
+| 40 | 1712 | 518 | 3.3 | 2021 | 2613 | 1400 | 701 | 50% for 2.0 s | 4.0 | 5.4/3.5 | 1190 | 4.0 |
+| 50 | 2450 | 756 | 3.2 | 2574 | 3378 | 2650 | 929 | 50% for 2.0 s | 4.0 | 4.6/5.5 | 1665 | 3.6 |
+| 60 | 3312 | 1247 | 2.7 | 3161 | 4173 | 2900 | 1034 | 50% for 2.0 s | 4.0 | 5.8/3.9 | 2240 | 3.3 |
+
+(budget: 2 s)
+
+### Sensitivity: breakeven pull size by level band
+
+Cell: the smallest surviving pull size (2 to 10) that beats single target, with the fastest pull size and its gap to single target; "none, +x% at n": every surviving pull size is slower, the fastest (n) by x%; "none (oom 2-5, caught 6-10)": no pull size survives, and why. Single target is re-run with the same options.
+
+#### Small pulls: Frost Nova, step out, Frostbolt one mob at a time (planner build)
+
+| assumption | test | L20 | L25 | L30 | L40 | L50 | L60 |
+|---|---|---|---|---|---|---|---|
+| defaults |  | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| target cap 5 | m1 | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| target cap 4 | m1 | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| Blizzard chill 40% (Chilled row value) | m3 | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| Blizzard chill lasts 1.5 s | m3 | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| Blizzard chill set once a cast | m3 | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| Classic chill: 75% for 4.5 s | reference | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| Frost Nova break 0.1 a hit | m12 | none, +15% at 2 | none, +25% at 2 | none, +37% at 2 | none, +37% at 2 | none, +14% at 2 | none, +10% at 2 |
+| Frost Nova (and Frostbite) never break | m12 | none, +15% at 2 | none, +25% at 2 | none, +42% at 2 | none, +48% at 2 | none, +12% at 2 | none, +10% at 2 |
+| Frost Nova break 1.0 a hit | m12 | none, +14% at 2 | none (oom 2-3, caught 4-10) | none, +15% at 2 | none, +21% at 2 | none, +25% at 2 | none, +15% at 2 |
+| Frostbite rolls on the first tick only | m17 | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| mob damage x0.5 | m16 | none, +9% at 2 | none, +12% at 2 | none, +6% at 2 | none, +7% at 2 | 2 (-2% at 2) | 2 (-2% at 2) |
+| mob damage x0.7 | m16 | none, +9% at 2 | none, +14% at 2 | none, +10% at 2 | none, +15% at 2 | none, +5% at 2 | 2 (-1% at 2) |
+| mob damage x1.5 | m16 | none, +46% at 2 | none (oom 2, caught 3-10) | none (caught 2-10) | none, +138% at 2 | none, +75% at 2 | none, +69% at 2 |
+| mob health x0.8 | m16 | none, +1% at 2 | none, +12% at 2 | none, +14% at 2 | none, +15% at 2 | none, +13% at 2 | none, +5% at 2 |
+| mob health x1.2 | m16 | none, +57% at 2 | none, +71% at 2 | none, +78% at 2 | none, +105% at 2 | none, +63% at 2 | none, +60% at 2 |
+| mob swing 1.5 s | m16 | none, +12% at 2 | none, +45% at 2 | none, +18% at 2 | none, +25% at 2 | none, +9% at 2 | none, +4% at 2 |
+| mob swing 2.5 s | m16 | none, +10% at 2 | none, +22% at 2 | none, +24% at 2 | none, +63% at 2 | none, +15% at 2 | none, +14% at 2 |
+| mobs run 7 yd/s | m3 | none, +17% at 2 | none, +80% at 2 | none, +5% at 2 | none, +22% at 2 | none, +5% at 2 | none, +1% at 2 |
+| Blizzard and Flamestrike ticks crit | m9 | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| first Blizzard tick at 0 s | m9 | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| no Blizzard pushback | channelPushback | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| first melee hit ends Blizzard | channelPushback | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| gathering 8 + 4 s a mob | gatherTime | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| gathering 8 + 10 s a mob | gatherTime | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| finding a group to pull from range: 0 s a mob | model | none, +5% at 2 | none, +42% at 2 | none, +16% at 2 | none, +21% at 2 | none, +5% at 2 | 2 (-2% at 2) |
+| finding a group to pull from range: 6 s a mob | model | none, +14% at 2 | none, +48% at 2 | none, +25% at 2 | none, +31% at 2 | none, +19% at 2 | none, +13% at 2 |
+| mob reach 8 yd | meleeRange | none, +21% at 2 | none, +104% at 2 | none, +9% at 2 | none, +32% at 2 | none, +15% at 2 | none, +8% at 2 |
+| Cone catches 50% of the pack | coneOfColdShape | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +14% at 2 | none, +5% at 2 |
+| Cone catches the whole pack | coneOfColdShape | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +9% at 2 | none, +3% at 2 |
+| humanoid pack, all flee at 15% | m20 | none, +1% at 2 | none, +11% at 2 | none, +9% at 2 | none, +18% at 2 | none, +7% at 2 | none, +5% at 2 |
+| safety floor 0 (expected death only) | model | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| safety floor 50% | model | none (caught 2-10) | none (caught 2-10) | none (caught 2-10) | none (caught 2-10) | none (caught 2-10) | none (caught 2-10) |
+| Nova and Ice Barrier cooldowns carry over between pulls | model | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| no mana potions | consumables | none, +9% at 2 | none (oom 2-3, caught 4-10) | none, +20% at 2 | none, +26% at 2 | none, +2% at 2 | 2 (-0% at 2) |
+| no mana gems | consumables | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| Mage Armor from 34, not Frost or Ice Armor | model | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none (caught 2, oom 3, caught 4-10) | none (caught 2, oom 3, caught 4-10) | none (caught 2, oom 3, caught 4-10) |
+| gear: 2 Int and 2 Stamina a level | gear | none, +10% at 2 | none, +15% at 2 | none, +14% at 2 | none, +26% at 2 | none, +13% at 2 | none, +5% at 2 |
+| low ranks full: single target may downrank at every level | m13 | none, +14% at 2 | none, +45% at 2 | none, +20% at 2 | none, +24% at 2 | none, +12% at 2 | none, +5% at 2 |
+| mobs 3 levels below the Mage, on both sides | model | none, +1% at 2 | none, +6% at 2 | none, +7% at 2 | none, +24% at 2 | none, +4% at 2 | 2 (-0% at 2) |
+| kind world: Classic chill, Nova break 0.1, mob health x0.8, gear x2 | combined | none, +7% at 2 | none, +17% at 2 | none, +35% at 2 | none, +22% at 2 | none, +18% at 2 | none, +9% at 2 |
+
+#### Frost AoE loop (Nova, Blizzard, Cone, Arcane Explosion)
+
+| assumption | test | L20 | L25 | L30 | L40 | L50 | L60 |
+|---|---|---|---|---|---|---|---|
+| defaults |  | none (oom 2-8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-7, caught 8, oom 9-10) | none (oom 2-3, caught 4, oom 5-7, caught 8-9, oom 10) | none (oom 2-5, caught 6, oom 7, caught 8-9, oom 10) |
+| target cap 5 | m1 | none (oom 2-5, caught 6-8, oom 9, caught 10) | none (oom 2-4, caught 5-10) | none (oom 2-6, caught 7-10) | none (oom 2-5, caught 6, oom 7, caught 8-10) | none (oom 2-3, caught 4, oom 5-6, caught 7-9, oom 10) | none (oom 2-5, caught 6, oom 7, caught 8-10) |
+| target cap 4 | m1 | none (oom 2-5, caught 6, oom 7, caught 8-10) | none (oom 2-5, caught 6-10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6, oom 7, caught 8, oom 9, caught 10) | none (oom 2-3, caught 4-7, oom 8, caught 9-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) |
+| Blizzard chill 40% (Chilled row value) | m3 | none (oom 2-9, caught 10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6, oom 7-8, caught 9-10) | none (oom 2-4, caught 5, oom 6, caught 7, oom 8, caught 9-10) | none (oom 2, caught 3, oom 4-5, caught 6, oom 7-8, caught 9, oom 10) | none (oom 2-3, caught 4-10) |
+| Blizzard chill lasts 1.5 s | m3 | none (oom 2-7, caught 8-10) | none (oom 2-4, caught 5-10) | none (oom 2-4, caught 5-10) | none (oom 2-4, caught 5-7, oom 8, caught 9, oom 10) | none (oom 2-4, caught 5, oom 6-8, caught 9-10) | none (oom 2-3, caught 4, oom 5-6, caught 7-10) |
+| Blizzard chill set once a cast | m3 | none (oom 2-7, caught 8, oom 9, caught 10) | none (oom 2-4, caught 5-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-5, caught 6-10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6-10) |
+| Classic chill: 75% for 4.5 s | reference | none (oom 2-10) | none (oom 2-3, caught 4, oom 5-10) | none, +111% at 2 | none, +64% at 3 | none, +97% at 3 | none, +102% at 3 |
+| Frost Nova break 0.1 a hit | m12 | none (oom 2-8, caught 9, oom 10) | none (oom 2-6, caught 7-10) | none (oom 2-8, caught 9, oom 10) | none (oom 2-8, caught 9, oom 10) | none, +253% at 2 | none (oom 2-7, caught 8, oom 9-10) |
+| Frost Nova (and Frostbite) never break | m12 | none (oom 2-5, caught 6-7, oom 8, caught 9-10) | none (oom 2-4, caught 5, oom 6, caught 7, oom 8, caught 9-10) | none (oom 2-7, caught 8-10) | none (oom 2-6, caught 7, oom 8-9, caught 10) | none, +265% at 2 | none, +273% at 2 |
+| Frost Nova break 1.0 a hit | m12 | none (oom 2-5, caught 6, oom 7-8, caught 9-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-6, caught 7-10) | none (oom 2-7, caught 8-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) |
+| Frostbite rolls on the first tick only | m17 | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-5, caught 6-10) | none (oom 2-4, caught 5-10) | none (oom 2-6, caught 7-10) | none (oom 2-5, caught 6-10) | none (oom 2-5, caught 6-10) |
+| mob damage x0.5 | m16 | none (oom 2-10) | none (oom 2-10) | none (oom 2-10) | none (oom 2-10) | none, +193% at 2 | none, +203% at 2 |
+| mob damage x0.7 | m16 | none (oom 2-9, caught 10) | none (oom 2-6, caught 7, oom 8, caught 9-10) | none (oom 2-7, caught 8-10) | none (oom 2-8, caught 9-10) | none (oom 2-5, caught 6-10) | none, +203% at 2 |
+| mob damage x1.5 | m16 | none (oom 2-5, caught 6-10) | none (oom 2, caught 3, oom 4-5, caught 6-10) | none (oom 2, caught 3-5, oom 6-7, caught 8-10) | none (oom 2-4, caught 5-10) | none (caught 2-10) | none (caught 2-10) |
+| mob health x0.8 | m16 | none (oom 2-5, caught 6-7, oom 8-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4, oom 5-7, caught 8-10) | none, +175% at 2 | none, +240% at 2 | none, +242% at 2 |
+| mob health x1.2 | m16 | none (oom 2-10) | none (oom 2-4, caught 5-10) | none (oom 2-3, caught 4, oom 5, caught 6-8, oom 9, caught 10) | none (oom 2-4, caught 5, oom 6-10) | none (oom 2-5, caught 6, oom 7, caught 8-9, oom 10) | none (oom 2-3, caught 4, oom 5, caught 6-10) |
+| mob swing 1.5 s | m16 | none (oom 2-10) | none (oom 2-6, caught 7-10) | none (oom 2-3, caught 4, oom 5, caught 6-8, oom 9, caught 10) | none (oom 2-4, caught 5-6, oom 7-8, caught 9, oom 10) | none (oom 2-5, caught 6-10) | none (oom 2-5, caught 6, oom 7, caught 8-10) |
+| mob swing 2.5 s | m16 | none (oom 2-4, caught 5, oom 6-10) | none (oom 2-3, caught 4-10) | none (oom 2, caught 3, oom 4, caught 5, oom 6, caught 7, oom 8-9, caught 10) | none (oom 2-4, caught 5-10) | none (oom 2, caught 3-10) | none (oom 2-4, caught 5-7, oom 8, caught 9-10) |
+| mobs run 7 yd/s | m3 | none (oom 2-5, caught 6, oom 7-10) | none (oom 2, caught 3-10) | none (oom 2-6, caught 7, oom 8, caught 9-10) | none (oom 2-6, caught 7-8, oom 9, caught 10) | none (stall 2, oom 3-5, caught 6-10) | none (stall 2, oom 3-4, caught 5-7, oom 8, caught 9-10) |
+| Blizzard and Flamestrike ticks crit | m9 | none (oom 2-6, caught 7, oom 8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6, oom 7, caught 8-10) | none (oom 2-6, caught 7, oom 8-10) | none, +193% at 2 | none, +203% at 2 |
+| first Blizzard tick at 0 s | m9 | none (oom 2-7, caught 8-10) | none (oom 2-4, caught 5-10) | none (oom 2-8, caught 9-10) | none (oom 2-5, caught 6-7, oom 8, caught 9-10) | none (oom 2-6, caught 7-10) | none (oom 2-5, caught 6-10) |
+| no Blizzard pushback | channelPushback | none (oom 2-5, caught 6-7, oom 8, caught 9-10) | none (oom 2-4, caught 5-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2-4, caught 5-6, oom 7, caught 8-10) | none, +193% at 2 | none (oom 2, caught 3, oom 4, caught 5-6, oom 7, caught 8-9, oom 10) |
+| first melee hit ends Blizzard | channelPushback | none (oom 2-8, caught 9-10) | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5-7, caught 8, oom 9, caught 10) | none (oom 2-7, caught 8, oom 9-10) | none (oom 2-6, caught 7-9, oom 10) | none (oom 2-5, caught 6, oom 7, caught 8-9, oom 10) |
+| gathering 8 + 4 s a mob | gatherTime | none (oom 2-8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-5, caught 6, oom 7, caught 8, oom 9-10) | none (oom 2-3, caught 4, oom 5-7, caught 8-9, oom 10) | none (oom 2, caught 3, oom 4-5, caught 6, oom 7, caught 8-9, oom 10) |
+| gathering 8 + 10 s a mob | gatherTime | none (oom 2-8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-7, caught 8, oom 9-10) | none (oom 2-7, caught 8-9, oom 10) | none (oom 2-3, caught 4, oom 5, caught 6, oom 7, caught 8-9, oom 10) |
+| finding a group to pull from range: 0 s a mob | model | none (oom 2-8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-7, caught 8, oom 9-10) | none (oom 2-3, caught 4, oom 5-7, caught 8-9, oom 10) | none (oom 2-5, caught 6, oom 7, caught 8-9, oom 10) |
+| finding a group to pull from range: 6 s a mob | model | none (oom 2-8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-7, caught 8, oom 9-10) | none (oom 2-3, caught 4, oom 5-7, caught 8-9, oom 10) | none (oom 2-5, caught 6, oom 7, caught 8-9, oom 10) |
+| mob reach 8 yd | meleeRange | none (oom 2-5, caught 6, oom 7-8, caught 9, oom 10) | none (oom 2-3, caught 4-10) | none (oom 2-5, caught 6-10) | none (oom 2-6, caught 7-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-8, caught 9-10) |
+| Cone catches 50% of the pack | coneOfColdShape | none (oom 2-8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-3, caught 4, oom 5-6, caught 7-9, oom 10) | none (oom 2-4, caught 5, oom 6-10) | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-7, caught 8-10) |
+| Cone catches the whole pack | coneOfColdShape | none (oom 2-8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-6, caught 7-9, oom 10) | none (oom 2-8, caught 9-10) | none, +199% at 2 | none, +203% at 2 |
+| humanoid pack, all flee at 15% | m20 | none (oom 2-8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-7, caught 8, oom 9-10) | none, +193% at 2 | none, +203% at 2 |
+| safety floor 0 (expected death only) | model | none (oom 2-10) | none (oom 2-7, caught 8-10) | none (oom 2-7, caught 8, oom 9-10) | none (oom 2-7, caught 8, oom 9-10) | none (oom 2-7, caught 8-9, oom 10) | none (oom 2-5, caught 6, oom 7, caught 8-9, oom 10) |
+| safety floor 50% | model | none (caught 2-10) | none (caught 2-10) | none (caught 2, oom 3, caught 4-10) | none (oom 2-6, caught 7-8, oom 9-10) | none (oom 2, caught 3-4, oom 5-6, caught 7-9, oom 10) | none (oom 2-5, caught 6, oom 7, caught 8-10) |
+| Nova and Ice Barrier cooldowns carry over between pulls | model | none (oom 2-8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-7, caught 8, oom 9-10) | none (oom 2-3, caught 4, oom 5-7, caught 8-9, oom 10) | none (oom 2-5, caught 6, oom 7, caught 8-9, oom 10) |
+| no mana potions | consumables | none (oom 2-8, caught 9, oom 10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-6, caught 7-10) | none (oom 2-5, caught 6, oom 7, caught 8, oom 9-10) | none (oom 2-5, caught 6, oom 7, caught 8-9, oom 10) | none (oom 2-5, caught 6, oom 7, caught 8-9, oom 10) |
+| no mana gems | consumables | none (oom 2-8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-6, caught 7-9, oom 10) | none (oom 2-7, caught 8, oom 9-10) | none (oom 2-7, caught 8-9, oom 10) | none (oom 2-5, caught 6, oom 7, caught 8-9, oom 10) |
+| Mage Armor from 34, not Frost or Ice Armor | model | none (oom 2-8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-5, caught 6-10) | none, +193% at 2 | none (oom 2-3, caught 4-10) |
+| gear: 2 Int and 2 Stamina a level | gear | none (oom 2-7, caught 8, oom 9, caught 10) | none (oom 2-5, caught 6, oom 7, caught 8-10) | none (oom 2-6, caught 7-10) | none (oom 2-7, caught 8-10) | none, +193% at 2 | none, +203% at 2 |
+| low ranks full: single target may downrank at every level | m13 | none (oom 2-8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-7, caught 8, oom 9-10) | none (oom 2-3, caught 4, oom 5-7, caught 8-9, oom 10) | none (oom 2-5, caught 6, oom 7, caught 8-9, oom 10) |
+| mobs 3 levels below the Mage, on both sides | model | none (oom 2-8, caught 9, oom 10) | none (oom 2-5, caught 6, oom 7-8, caught 9-10) | none (oom 2-7, caught 8-10) | none, +165% at 2 | none, +197% at 2 | none (oom 2-4, caught 5, oom 6, caught 7, oom 8, caught 9-10) |
+| kind world: Classic chill, Nova break 0.1, mob health x0.8, gear x2 | combined | none, +3% at 4 | none, +106% at 2 | none, +52% at 3 | none, +5% at 7 | none, +20% at 7 | 9 (-21% at 10) |
+
+#### Arcane Explosion in melee after Frost Nova
+
+| assumption | test | L20 | L25 | L30 | L40 | L50 | L60 |
+|---|---|---|---|---|---|---|---|
+| defaults |  | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| target cap 5 | m1 | none (oom 2-5, caught 6-7, oom 8, caught 9-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) |
+| target cap 4 | m1 | none (oom 2-4, caught 5-7, oom 8, caught 9-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) |
+| Blizzard chill 40% (Chilled row value) | m3 | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| Blizzard chill lasts 1.5 s | m3 | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| Blizzard chill set once a cast | m3 | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| Classic chill: 75% for 4.5 s | reference | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| Frost Nova break 0.1 a hit | m12 | none (oom 2-6, caught 7, oom 8, caught 9-10) | none (oom 2-5, caught 6-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2-5, caught 6-10) | none, +252% at 2 | none, +259% at 2 |
+| Frost Nova (and Frostbite) never break | m12 | none (oom 2-5, caught 6, oom 7-8, caught 9-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-6, caught 7-10) | none, +226% at 2 | none, +143% at 3 | none, +273% at 2 |
+| Frost Nova break 1.0 a hit | m12 | none (oom 2-5, caught 6-7, oom 8, caught 9-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2, caught 3-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) |
+| Frostbite rolls on the first tick only | m17 | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| mob damage x0.5 | m16 | none, +78% at 2 | none (oom 2-7, caught 8-9, oom 10) | none, +113% at 2 | none, +59% at 3 | none, +46% at 4 | none, +102% at 3 |
+| mob damage x0.7 | m16 | none (oom 2-7, caught 8-10) | none (oom 2-5, caught 6-7, oom 8, caught 9-10) | none (oom 2-4, caught 5-6, oom 7, caught 8-10) | none, +138% at 2 | none, +95% at 3 | none, +203% at 2 |
+| mob damage x1.5 | m16 | none (oom 2-3, caught 4-10) | none (oom 2, caught 3-4, oom 5, caught 6-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) | none (oom 2-3, caught 4-10) | none (caught 2-10) |
+| mob health x0.8 | m16 | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none, +122% at 2 | none, +102% at 2 | none, +171% at 2 |
+| mob health x1.2 | m16 | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2, caught 3-5, oom 6, caught 7-10) |
+| mob swing 1.5 s | m16 | none (oom 2-4, caught 5-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2, caught 3-5, oom 6, caught 7-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2, caught 3-10) |
+| mob swing 2.5 s | m16 | none (oom 2-4, caught 5, oom 6, caught 7, oom 8, caught 9-10) | none (oom 2, caught 3-4, oom 5-6, caught 7-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2, caught 3-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2-3, caught 4-10) |
+| mobs run 7 yd/s | m3 | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-6, caught 7-10) | none (oom 2, caught 3-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) |
+| Blizzard and Flamestrike ticks crit | m9 | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| first Blizzard tick at 0 s | m9 | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| no Blizzard pushback | channelPushback | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| first melee hit ends Blizzard | channelPushback | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| gathering 8 + 4 s a mob | gatherTime | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-10) |
+| gathering 8 + 10 s a mob | gatherTime | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-6, caught 7-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2-4, caught 5-10) |
+| finding a group to pull from range: 0 s a mob | model | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| finding a group to pull from range: 6 s a mob | model | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| mob reach 8 yd | meleeRange | none (oom 2-4, caught 5-7, oom 8, caught 9-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2, caught 3-10) | none (oom 2, caught 3-5, oom 6, caught 7-10) |
+| Cone catches 50% of the pack | coneOfColdShape | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-5, oom 6, caught 7-10) |
+| Cone catches the whole pack | coneOfColdShape | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-3, caught 4, oom 5, caught 6-7, oom 8, caught 9-10) | none, +133% at 2 | none (oom 2, caught 3-5, oom 6, caught 7-10) |
+| humanoid pack, all flee at 15% | m20 | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none, +138% at 2 | none, +136% at 2 | none, +142% at 2 |
+| safety floor 0 (expected death only) | model | none (oom 2-9, caught 10) | none (oom 2-6, caught 7-10) | none (oom 2-6, caught 7-10) | none (oom 2-6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| safety floor 50% | model | none (caught 2-10) | none (caught 2-10) | none (caught 2-10) | none (caught 2-10) | none (caught 2-10) | none (oom 2, caught 3-10) |
+| Nova and Ice Barrier cooldowns carry over between pulls | model | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| no mana potions | consumables | none (oom 2-5, caught 6-7, oom 8, caught 9-10) | none (oom 2-3, caught 4, oom 5-6, caught 7, oom 8, caught 9-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-3, caught 4, oom 5-6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) |
+| no mana gems | consumables | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| Mage Armor from 34, not Frost or Ice Armor | model | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5-10) | none (oom 2-3, caught 4-10) | none (oom 2, caught 3-10) |
+| gear: 2 Int and 2 Stamina a level | gear | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-6, caught 7-10) | none, +107% at 2 | none, +101% at 2 | none, +140% at 2 | none (oom 2-4, caught 5-10) |
+| low ranks full: single target may downrank at every level | m13 | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| mobs 3 levels below the Mage, on both sides | model | none, +52% at 2 | none, +95% at 2 | none, +88% at 2 | none, +165% at 2 | none, +197% at 2 | none, +204% at 2 |
+| kind world: Classic chill, Nova break 0.1, mob health x0.8, gear x2 | combined | none, +33% at 2 | none, +41% at 2 | none, +50% at 3 | none, +12% at 3 | none, +15% at 3 | none, +10% at 3 |
+
+#### Flamestrike with Arcane Explosion (Fire build)
+
+| assumption | test | L20 | L25 | L30 | L40 | L50 | L60 |
+|---|---|---|---|---|---|---|---|
+| defaults |  | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| target cap 5 | m1 | none (oom 2-5, caught 6-7, oom 8, caught 9-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) | none (oom 2-4, caught 5-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| target cap 4 | m1 | none (oom 2-4, caught 5-7, oom 8, caught 9-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) | none (oom 2-4, caught 5-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| Blizzard chill 40% (Chilled row value) | m3 | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| Blizzard chill lasts 1.5 s | m3 | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| Blizzard chill set once a cast | m3 | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| Classic chill: 75% for 4.5 s | reference | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| Frost Nova break 0.1 a hit | m12 | none (oom 2-3, caught 4-10) | none (oom 2-6, caught 7-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (caught 2, oom 3, caught 4-10) |
+| Frost Nova (and Frostbite) never break | m12 | none (oom 2-4, caught 5-7, oom 8, caught 9-10) | none (oom 2, caught 3, oom 4-6, caught 7-10) | none (oom 2, caught 3-4, oom 5, caught 6-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none, +265% at 2 | none (caught 2-10) |
+| Frost Nova break 1.0 a hit | m12 | none (oom 2-5, caught 6-7, oom 8, caught 9-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2, caught 3-10) | none (caught 2-4, oom 5, caught 6-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| Frostbite rolls on the first tick only | m17 | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| mob damage x0.5 | m16 | none (oom 2-4, caught 5, oom 6-7, caught 8, oom 9, caught 10) | none (oom 2-3, caught 4, oom 5-6, caught 7, oom 8, caught 9, oom 10) | none, +113% at 2 | none, +138% at 2 | none, +193% at 2 | none (oom 2-4, caught 5-10) |
+| mob damage x0.7 | m16 | none (oom 2-3, caught 4, oom 5-6, caught 7-10) | none (oom 2-4, caught 5, oom 6-9, caught 10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-3, caught 4-5, oom 6, caught 7-8, oom 9, caught 10) | none (oom 2, caught 3, oom 4-6, caught 7, oom 8, caught 9-10) |
+| mob damage x1.5 | m16 | none (oom 2-3, caught 4-10) | none (caught 2-3, oom 4, caught 5-10) | none (oom 2-4, caught 5-10) | none (caught 2-3, oom 4, caught 5-10) | none (caught 2-3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| mob health x0.8 | m16 | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (caught 2, oom 3-4, caught 5, oom 6-7, caught 8-10) | none (caught 2-3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| mob health x1.2 | m16 | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| mob swing 1.5 s | m16 | none (oom 2-4, caught 5, oom 6, caught 7-8, oom 9-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-6, oom 7, caught 8-10) | none (oom 2, caught 3-4, oom 5-6, caught 7-10) | none (caught 2-3, oom 4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) |
+| mob swing 2.5 s | m16 | none (oom 2-5, caught 6-8, oom 9, caught 10) | none (oom 2-3, caught 4, oom 5-6, caught 7-10) | none (oom 2-4, caught 5-6, oom 7, caught 8-10) | none (caught 2-3, oom 4, caught 5, oom 6, caught 7-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| mobs run 7 yd/s | m3 | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6-8, caught 9-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (caught 2-3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| Blizzard and Flamestrike ticks crit | m9 | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| first Blizzard tick at 0 s | m9 | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| no Blizzard pushback | channelPushback | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| first melee hit ends Blizzard | channelPushback | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| gathering 8 + 4 s a mob | gatherTime | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| gathering 8 + 10 s a mob | gatherTime | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| finding a group to pull from range: 0 s a mob | model | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| finding a group to pull from range: 6 s a mob | model | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| mob reach 8 yd | meleeRange | none (oom 2-4, caught 5-7, oom 8, caught 9-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2, caught 3-5, oom 6, caught 7-10) |
+| Cone catches 50% of the pack | coneOfColdShape | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| Cone catches the whole pack | coneOfColdShape | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| humanoid pack, all flee at 15% | m20 | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (caught 2, oom 3-4, caught 5, oom 6-7, caught 8-10) | none (caught 2-3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| safety floor 0 (expected death only) | model | none (oom 2-6, caught 7, oom 8-10) | none (oom 2-6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2-4, caught 5-10) | none (oom 2-3, caught 4-10) |
+| safety floor 50% | model | none (caught 2-10) | none (caught 2-10) | none (caught 2-10) | none (caught 2-10) | none (caught 2-10) | none (oom 2, caught 3-10) |
+| Nova and Ice Barrier cooldowns carry over between pulls | model | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| no mana potions | consumables | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2, caught 3, oom 4-5, caught 6-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6-7, caught 8-10) | none (oom 2-4, caught 5-10) | none (oom 2, caught 3, oom 4, caught 5, oom 6, caught 7-10) |
+| no mana gems | consumables | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-3, caught 4-5, oom 6-7, caught 8-10) | none (caught 2-3, oom 4, caught 5-10) | none (oom 2-3, caught 4-10) |
+| Mage Armor from 34, not Frost or Ice Armor | model | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (caught 2-3, oom 4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2, caught 3-10) |
+| gear: 2 Int and 2 Stamina a level | gear | none (oom 2-3, caught 4, oom 5, caught 6-7, oom 8-9, caught 10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none, +107% at 2 | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2, caught 3-10) | none (oom 2, caught 3-10) |
+| low ranks full: single target may downrank at every level | m13 | none (oom 2-5, caught 6-7, oom 8-9, caught 10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2, caught 3, oom 4, caught 5-10) | none (oom 2, caught 3-10) |
+| mobs 3 levels below the Mage, on both sides | model | none, +151% at 2 | none, +139% at 2 | none, +130% at 2 | none (oom 2-4, caught 5-6, oom 7, caught 8-10) | none (caught 2, oom 3-4, caught 5-10) | none (oom 2, caught 3, oom 4, caught 5-10) |
+| kind world: Classic chill, Nova break 0.1, mob health x0.8, gear x2 | combined | none, +48% at 2 | none, +47% at 2 | none, +51% at 2 | none, +53% at 2 | none, +141% at 2 | none, +76% at 2 |
+
+#### Cone of Cold kiting with Frostbolt (small groups)
+
+| assumption | test | L30 | L40 | L50 | L60 |
+|---|---|---|---|---|---|
+| defaults |  | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| target cap 5 | m1 | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| target cap 4 | m1 | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| Blizzard chill 40% (Chilled row value) | m3 | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| Blizzard chill lasts 1.5 s | m3 | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| Blizzard chill set once a cast | m3 | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| Classic chill: 75% for 4.5 s | reference | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| Frost Nova break 0.1 a hit | m12 | none (oom 2, caught 3-10) | none, +189% at 2 | none, +135% at 3 | none, +259% at 2 |
+| Frost Nova (and Frostbite) never break | m12 | none (oom 2, caught 3-10) | none, +226% at 2 | none, +265% at 2 | none, +273% at 2 |
+| Frost Nova break 1.0 a hit | m12 | none (oom 2-4, caught 5-10) | none (oom 2-4, caught 5-6, oom 7, caught 8-10) | none, +193% at 2 | none, +203% at 2 |
+| Frostbite rolls on the first tick only | m17 | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| mob damage x0.5 | m16 | none (oom 2-4, caught 5-10) | none, +139% at 2 | none, +113% at 2 | none, +131% at 3 |
+| mob damage x0.7 | m16 | none (oom 2-4, caught 5-10) | none, +144% at 2 | none, +193% at 2 | none, +203% at 2 |
+| mob damage x1.5 | m16 | none (oom 2, caught 3-10) | none, +145% at 2 | none, +193% at 2 | none, +207% at 2 |
+| mob health x0.8 | m16 | none, +142% at 2 | none, +99% at 2 | none, +86% at 2 | none, +87% at 2 |
+| mob health x1.2 | m16 | none (oom 2-4, caught 5-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none, +163% at 2 | none (oom 2-3, caught 4-10) |
+| mob swing 1.5 s | m16 | none (oom 2-3, caught 4-10) | none, +141% at 2 | none, +193% at 2 | none, +203% at 2 |
+| mob swing 2.5 s | m16 | none (oom 2-5, caught 6-10) | none, +138% at 2 | none, +84% at 2 | none, +203% at 2 |
+| mobs run 7 yd/s | m3 | none (oom 2, stall 3, caught 4-10) | none, +139% at 2 | none, +87% at 2 | none, +129% at 2 |
+| Blizzard and Flamestrike ticks crit | m9 | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| first Blizzard tick at 0 s | m9 | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| no Blizzard pushback | channelPushback | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| first melee hit ends Blizzard | channelPushback | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| gathering 8 + 4 s a mob | gatherTime | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| gathering 8 + 10 s a mob | gatherTime | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| finding a group to pull from range: 0 s a mob | model | none (oom 2-3, caught 4-10) | none, +138% at 2 | none, +193% at 2 | none, +203% at 2 |
+| finding a group to pull from range: 6 s a mob | model | none (oom 2-3, caught 4-10) | none, +142% at 2 | none, +110% at 3 | none, +203% at 2 |
+| mob reach 8 yd | meleeRange | none (oom 2-4, caught 5-10) | none (oom 2-3, caught 4-10) | none, +193% at 2 | none (oom 2-3, caught 4-5, oom 6, caught 7-10) |
+| Cone catches 50% of the pack | coneOfColdShape | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6-10) | none, +193% at 2 | none, +203% at 2 |
+| Cone catches the whole pack | coneOfColdShape | none (oom 2-4, caught 5-10) | none, +138% at 2 | none, +130% at 2 | none, +203% at 2 |
+| humanoid pack, all flee at 15% | m20 | none (oom 2-4, caught 5-10) | none, +91% at 2 | none, +72% at 2 | none, +80% at 2 |
+| safety floor 0 (expected death only) | model | none (oom 2-4, caught 5-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| safety floor 50% | model | none (caught 2-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| Nova and Ice Barrier cooldowns carry over between pulls | model | none (oom 2-3, caught 4-10) | none, +140% at 2 | none, +95% at 3 | none, +203% at 2 |
+| no mana potions | consumables | none (oom 2-4, caught 5-10) | none (oom 2-4, caught 5-6, oom 7, caught 8-10) | none, +157% at 2 | none, +178% at 2 |
+| no mana gems | consumables | none (oom 2-4, caught 5-10) | none (oom 2-4, caught 5-6, oom 7, caught 8-10) | none, +193% at 2 | none, +203% at 2 |
+| Mage Armor from 34, not Frost or Ice Armor | model | none (oom 2-3, caught 4-10) | none (oom 2-4, caught 5-10) | none, +193% at 2 | none, +203% at 2 |
+| gear: 2 Int and 2 Stamina a level | gear | none (oom 2-4, caught 5-10) | none, +141% at 2 | none, +95% at 3 | none, +102% at 3 |
+| low ranks full: single target may downrank at every level | m13 | none (oom 2-3, caught 4-10) | none, +137% at 2 | none, +95% at 3 | none, +203% at 2 |
+| mobs 3 levels below the Mage, on both sides | model | none (oom 2-4, caught 5-10) | none, +122% at 2 | none, +81% at 2 | none, +204% at 2 |
+| kind world: Classic chill, Nova break 0.1, mob health x0.8, gear x2 | combined | none, +149% at 2 | none, +116% at 2 | none, +88% at 3 | none, +96% at 3 |
+
+(sensitivity: 323 s)
+
+### Pairs of helpful assumptions: breakeven pull size by level band
+
+Cells as in the sensitivity section. Every pair of: Classic chill, Nova break 0.1, mob health x0.8, mob damage x0.5, gear x2, ticks crit.
+
+#### Small pulls: Frost Nova, step out, Frostbolt one mob at a time (planner build)
+
+| pair | L20 | L25 | L30 | L40 | L50 | L60 |
+|---|---|---|---|---|---|---|
+| Classic chill + Nova break 0.1 | none, +15% at 2 | none, +25% at 2 | none, +37% at 2 | none, +37% at 2 | none, +14% at 2 | none, +10% at 2 |
+| Classic chill + mob health x0.8 | none, +1% at 2 | none, +12% at 2 | none, +14% at 2 | none, +15% at 2 | none, +13% at 2 | none, +5% at 2 |
+| Classic chill + mob damage x0.5 | none, +9% at 2 | none, +12% at 2 | none, +6% at 2 | none, +7% at 2 | 2 (-2% at 2) | 2 (-2% at 2) |
+| Classic chill + gear x2 | none, +10% at 2 | none, +15% at 2 | none, +14% at 2 | none, +26% at 2 | none, +13% at 2 | none, +5% at 2 |
+| Classic chill + ticks crit | none, +9% at 2 | none, +45% at 2 | none, +20% at 2 | none, +26% at 2 | none, +12% at 2 | none, +5% at 2 |
+| Nova break 0.1 + mob health x0.8 | none, +7% at 2 | none, +15% at 2 | none, +35% at 2 | none, +24% at 2 | none, +17% at 2 | none, +8% at 2 |
+| Nova break 0.1 + mob damage x0.5 | none, +15% at 2 | none, +21% at 2 | none, +26% at 2 | none, +19% at 2 | none, +7% at 2 | none, +6% at 2 |
+| Nova break 0.1 + gear x2 | none, +13% at 2 | none, +23% at 2 | none, +40% at 2 | none, +39% at 2 | none, +15% at 2 | none, +10% at 2 |
+| Nova break 0.1 + ticks crit | none, +15% at 2 | none, +25% at 2 | none, +37% at 2 | none, +37% at 2 | none, +14% at 2 | none, +10% at 2 |
+| mob health x0.8 + mob damage x0.5 | none, +2% at 2 | none, +8% at 2 | none, +7% at 3 | none, +3% at 2 | none, +5% at 2 | 3 (-2% at 3) |
+| mob health x0.8 + gear x2 | none, +1% at 2 | none, +12% at 2 | none, +12% at 2 | none, +14% at 2 | none, +14% at 3 | none, +6% at 2 |
+| mob health x0.8 + ticks crit | none, +1% at 2 | none, +12% at 2 | none, +14% at 2 | none, +15% at 2 | none, +13% at 2 | none, +5% at 2 |
+| mob damage x0.5 + gear x2 | none, +6% at 3 | none, +10% at 3 | 3 (-4% at 3) | none, +7% at 2 | 2 (-2% at 2) | 2 (-2% at 2) |
+| mob damage x0.5 + ticks crit | none, +9% at 2 | none, +12% at 2 | none, +6% at 2 | none, +7% at 2 | 2 (-2% at 2) | 2 (-2% at 2) |
+| gear x2 + ticks crit | none, +10% at 2 | none, +15% at 2 | none, +14% at 2 | none, +26% at 2 | none, +13% at 2 | none, +5% at 2 |
+
+#### Frost AoE loop (Nova, Blizzard, Cone, Arcane Explosion)
+
+| pair | L20 | L25 | L30 | L40 | L50 | L60 |
+|---|---|---|---|---|---|---|
+| Classic chill + Nova break 0.1 | none, +168% at 2 | none (oom 2-5, caught 6, oom 7-10) | none (oom 2-7, caught 8, oom 9-10) | none, +189% at 2 | none, +252% at 2 | none, +79% at 4 |
+| Classic chill + mob health x0.8 | none, +19% at 2 | none, +65% at 3 | none, +21% at 4 | none, +10% at 5 | none, +13% at 6 | none, +14% at 6 |
+| Classic chill + mob damage x0.5 | none, +44% at 3 | none, +113% at 2 | none, +42% at 3 | 5 (-16% at 6) | 6 (-25% at 8) | 7 (-34% at 10) |
+| Classic chill + gear x2 | none, +44% at 3 | none, +85% at 2 | none, +38% at 3 | none, +62% at 3 | 6 (-2% at 6) | none, +1% at 6 |
+| Classic chill + ticks crit | none (oom 2-10) | none (oom 2-10) | none, +111% at 2 | none, +60% at 3 | none, +17% at 5 | none, +21% at 5 |
+| Nova break 0.1 + mob health x0.8 | none (oom 2-8, caught 9, oom 10) | none (oom 2-7, caught 8, oom 9, caught 10) | none (oom 2-8, caught 9-10) | none, +231% at 2 | none, +162% at 3 | none, +94% at 4 |
+| Nova break 0.1 + mob damage x0.5 | none (oom 2-10) | none (oom 2-10) | none (oom 2-6, caught 7, oom 8-10) | none (oom 2-10) | none, +142% at 3 | none, +139% at 3 |
+| Nova break 0.1 + gear x2 | none (oom 2-6, caught 7, oom 8-9, caught 10) | none (oom 2-7, caught 8-10) | none (oom 2-7, caught 8, oom 9, caught 10) | none, +191% at 2 | none, +252% at 2 | none, +79% at 4 |
+| Nova break 0.1 + ticks crit | none (oom 2-6, caught 7-9, oom 10) | none (oom 2-6, caught 7-8, oom 9, caught 10) | none (oom 2-5, caught 6, oom 7-8, caught 9-10) | none, +189% at 2 | none, +135% at 3 | none, +139% at 3 |
+| mob health x0.8 + mob damage x0.5 | none, +154% at 2 | none (oom 2-8, caught 9-10) | none, +153% at 2 | none, +83% at 3 | none, +72% at 4 | none, +73% at 4 |
+| mob health x0.8 + gear x2 | none (oom 2-6, caught 7-8, oom 9, caught 10) | none, +149% at 2 | none, +120% at 2 | none, +83% at 3 | none, +129% at 3 | none, +132% at 3 |
+| mob health x0.8 + ticks crit | none (oom 2-6, caught 7, oom 8, caught 9, oom 10) | none (oom 2-4, caught 5-10) | none (oom 2-5, caught 6-10) | none (oom 2-5, caught 6, oom 7, caught 8-9, oom 10) | none, +127% at 3 | none, +128% at 3 |
+| mob damage x0.5 + gear x2 | none (oom 2-10) | none (oom 2-8, caught 9, oom 10) | none, +114% at 2 | none, +166% at 2 | none, +95% at 3 | none, +106% at 3 |
+| mob damage x0.5 + ticks crit | none (oom 2-10) | none (oom 2-8, caught 9-10) | none (oom 2-10) | none (oom 2-9, caught 10) | none, +48% at 4 | none, +52% at 4 |
+| gear x2 + ticks crit | none (oom 2-6, caught 7-8, oom 9, caught 10) | none (oom 2-3, caught 4, oom 5-6, caught 7-10) | none (oom 2-6, caught 7-10) | none (oom 2-7, caught 8-10) | none, +95% at 3 | none, +102% at 3 |
+
+#### Arcane Explosion in melee after Frost Nova
+
+| pair | L20 | L25 | L30 | L40 | L50 | L60 |
+|---|---|---|---|---|---|---|
+| Classic chill + Nova break 0.1 | none (oom 2-6, caught 7, oom 8, caught 9-10) | none (oom 2-5, caught 6-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2-5, caught 6-10) | none, +252% at 2 | none, +259% at 2 |
+| Classic chill + mob health x0.8 | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none, +122% at 2 | none, +102% at 2 | none, +171% at 2 |
+| Classic chill + mob damage x0.5 | none, +78% at 2 | none (oom 2-7, caught 8-9, oom 10) | none, +113% at 2 | none, +59% at 3 | none, +46% at 4 | none, +102% at 3 |
+| Classic chill + gear x2 | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-6, caught 7-10) | none, +107% at 2 | none, +101% at 2 | none, +140% at 2 | none (oom 2-4, caught 5-10) |
+| Classic chill + ticks crit | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none (oom 2-4, caught 5, oom 6, caught 7-10) | none (oom 2-3, caught 4-10) | none (oom 2-3, caught 4-10) |
+| Nova break 0.1 + mob health x0.8 | none, +90% at 2 | none (oom 2-5, caught 6-10) | none, +160% at 2 | none, +82% at 3 | none, +61% at 3 | none, +58% at 3 |
+| Nova break 0.1 + mob damage x0.5 | none, +121% at 2 | none, +158% at 2 | none, +178% at 2 | none, +16% at 5 | none, +41% at 5 | none, +43% at 5 |
+| Nova break 0.1 + gear x2 | none, +81% at 2 | none, +116% at 2 | none, +131% at 2 | none, +64% at 3 | none, +65% at 2 | none, +96% at 3 |
+| Nova break 0.1 + ticks crit | none (oom 2-6, caught 7, oom 8, caught 9-10) | none (oom 2-5, caught 6-10) | none (oom 2-4, caught 5, oom 6-7, caught 8-10) | none (oom 2-5, caught 6-10) | none, +252% at 2 | none, +259% at 2 |
+| mob health x0.8 + mob damage x0.5 | none, +9% at 3 | none, +34% at 3 | none, +39% at 3 | none, +10% at 5 | none, +16% at 5 | none, +39% at 5 |
+| mob health x0.8 + gear x2 | none, +17% at 2 | none, +57% at 2 | none, +57% at 2 | none, +27% at 2 | none, +38% at 2 | none, +36% at 2 |
+| mob health x0.8 + ticks crit | none (oom 2-5, caught 6-10) | none (oom 2-3, caught 4, oom 5, caught 6-10) | none (oom 2-3, caught 4-5, oom 6, caught 7-10) | none, +122% at 2 | none, +102% at 2 | none, +171% at 2 |
+| mob damage x0.5 + gear x2 | none, +1% at 3 | 3 (-1% at 3) | 3 (-0% at 3) | 5 (-4% at 5) | none, +2% at 5 | none, +33% at 3 |
+| mob damage x0.5 + ticks crit | none, +78% at 2 | none (oom 2-7, caught 8-9, oom 10) | none, +113% at 2 | none, +59% at 3 | none, +46% at 4 | none, +102% at 3 |
+| gear x2 + ticks crit | none (oom 2-5, caught 6-9, oom 10) | none (oom 2-6, caught 7-10) | none, +107% at 2 | none, +101% at 2 | none, +140% at 2 | none (oom 2-4, caught 5-10) |
+
+(pairs: 185 s)
+
+### Lower ranks under full coefficients: damage per mana, best lower rank vs the top rank
+
+| L | Blizzard | Arcane Explosion | Flamestrike (hit) |
+|---|---|---|---|
+| 20 | top only | top only | top only |
+| 25 | top only | 1.01x of top | 1.00x of top |
+| 30 | 0.95x of top | 0.98x of top | 0.97x of top |
+| 40 | 0.97x of top | 0.99x of top | 0.97x of top |
+| 50 | 0.94x of top | 0.95x of top | 0.97x of top |
+| 60 | 0.95x of top | 0.95x of top | 0.96x of top |
+
+(ranks: 0 s)
